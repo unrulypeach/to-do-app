@@ -1,0 +1,9 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.side-bar-container {
+  height: 100vh;
+  width: 20vw;
+  background-color: rgb(181, 223, 236);
+}
