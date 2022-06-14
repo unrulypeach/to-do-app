@@ -5,7 +5,12 @@ module.exports = {
   mode: 'development',
   entry: {
     index: './src/index.js',
-    navbar: './src/navbar.js'
+    navbar: './src/navbar.js',
+    task: './src/task.js',
+    displaytask: './src/displayTask.js',
+    event: './src/event.js',
+    create: './src/createbar.js',
+    modules: './src/modules.js'
   },
   devServer: {
     static: './dist',
@@ -31,6 +36,10 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
       },
     ],

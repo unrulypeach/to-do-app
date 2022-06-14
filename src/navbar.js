@@ -1,6 +1,13 @@
+import format from 'date-fns';
+import { getTodaysDatePretty } from './task';
+
 export default function sidebar() {
   const div = document.createElement('div');
   div.classList.add('side-bar-container');
+
+  const date = document.createElement('div');
+  date.classList.add('todays-date');
+  date.innerHTML = getTodaysDatePretty();
 
   const sortSect = document.createElement('ul');
   sortSect.classList.add('side-bar');
@@ -32,6 +39,6 @@ export default function sidebar() {
 
   sortSect.append(today, upcoming, urgent);
   typeSect.append(personal, work);
-  div.append(sortSect, typeSect);
+  div.append(date, sortSect, typeSect);
   document.body.appendChild(div);
 }

@@ -1,2 +1,7 @@
 node_modules
 dist
+src/Barlow-ExtraLight.ttf
+src/Barlow-Light.ttf
+src/Barlow-Medium.ttf
+src/Barlow-Regular.ttf
+src/Barlow-SemiBold.ttf
