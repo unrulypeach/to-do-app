@@ -2,6 +2,7 @@ import {format, add} from 'date-fns';
 import { getTodaysDate, getInputValues, newTask } from './task';
 import { module } from './modules';
 
+
 export default function createbar () {
   const div = document.createElement('div');
   div.classList.add('create-bar-container');
@@ -40,6 +41,7 @@ export default function createbar () {
   taskBtn.addEventListener('click', e => {
     const task = newTask(getInputValues(e.target.parentElement.id));
     module.addTask(task);
+    module.addTaskToDom(task);
     console.log(module.returnLib());
   });
 
@@ -73,7 +75,7 @@ export default function createbar () {
   const eventBtn = document.createElement('button');
   eventBtn.classList.add('submit-button');
   eventBtn.type = 'button';
-  eventBtn.innerHTML = 'Create event';
+  eventBtn.innerHTML = 'create-event';
 
 
   taskForm.append(taskTitle, taskDescript, taskDate, taskBtn);
@@ -82,5 +84,5 @@ export default function createbar () {
   createEvent.append(createEventTitle, eventForm);
   div.append(createTask, createEvent);
 
-  document.body.appendChild(div);
+  return div;
 }

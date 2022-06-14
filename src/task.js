@@ -13,18 +13,22 @@ function getTodaysDatePretty(){
 //   console.log(format(tmr, 'yyyy-MM-dd'));
 //   return format(tmr, 'yyyy-MM-dd');
 // }
+function taskFactory (title, description, date, priority) {
 
-function taskFactory (title, description, date) {
+  //edit description
+  //edit title
+  //edit dueDate
+  //change completed status
 
   return {
     title,
     description,
     createDate: getTodaysDate(),
     dueDate: date,
+    priority: false,
     completeted: false
   }
 }
-
 //cycle through form childNodes to receive inputs
 function getInputValues(formId) {
   const inputsNodeList = document.getElementById(formId).childNodes;
@@ -46,7 +50,5 @@ function removeUndefined(data)  {
 function newTask(taskFactoryParams) {
   return Object.create(taskFactory.apply(null, taskFactoryParams));
 }
-function displayTask(taskObj) {
 
-}
 export {getTodaysDate, getTodaysDatePretty, taskFactory, getInputValues, newTask}

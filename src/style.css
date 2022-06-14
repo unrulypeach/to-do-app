@@ -32,13 +32,20 @@
   font-weight: 600;
   font-style: normal;
 }
+.main-container {
+  display: flex;
+  height: 100vh;
+}
+.tasks-container{
+  flex-grow: 2;
+}
 /* LEFT NAV DIV*/
 .side-bar-container {
-  padding-top: 5vh;
+  /* padding-top: 5vh; */
+  /* height: 95vh;
+  width: 20vw; */
   font-family: 'Barlow';
   font-weight: 500;
-  height: 95vh;
-  width: 20vw;
   background-color: rgb(181, 223, 236);
 }
 .sort-opt, .type-opt {
@@ -61,11 +68,7 @@
 
 /* RIGHT CREATE DIV*/
 .create-bar-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 20vw;
-  height: 100vh;
+  flex-grow: 1;
   background-color: rgb(224, 224, 185);
 }
 .create-opt {
@@ -74,4 +77,32 @@
 .create-bar-subhead {
   font-family: 'Barlow';
   font-weight: 500;
+}
+.create-opt > form{
+  display: flex;
+  flex-flow: column;
+}
+
+/*CENTER DIV w/ TASKS*/
+#tasks-container-title {
+  font-family: 'Barlow';
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: solid 1px rgb(180, 180, 180);
+}
+.task-container {
+  font-family: 'Barlow';
+  display: flex;
+
+  border-bottom: solid 1px rgb(173, 173, 173);
+}
+.task-center-container {
+  flex-grow: 1;
+}
+.task-center-container > h1 {
+  font-weight: 600;
+}
+.task-center-container > p {
+  font-weight: 300;
 }
