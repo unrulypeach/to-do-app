@@ -1,6 +1,4 @@
-const module = ((name) => {
-  name:name;
-
+const module = (() => {
   let library = [];
 
   function addTask(obj){
@@ -11,6 +9,9 @@ const module = ((name) => {
     return library
   }
 
+  function returnUrgentItems(){
+    return library.filter(i => i.urgent === true);
+  }
   function addTaskToDom(task){
     const parent = document.getElementById('tasks-container');
     parent.appendChild(displayTask(task));
@@ -37,6 +38,7 @@ const module = ((name) => {
     const complete = document.createElement('input');
     complete.classList.add('task-progress');
     complete.type = 'checkbox';
+
     // dueDate: "2022-06-14"
     const date = document.createElement('p');
     date.classList.add('task-date');
@@ -54,7 +56,8 @@ const module = ((name) => {
   return {
     addTask,
     returnLib,
-    addTaskToDom,
+    returnUrgentItems,
+    addTaskToDom
   }
 })();
 

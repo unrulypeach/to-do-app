@@ -13,7 +13,7 @@ function getTodaysDatePretty(){
 //   console.log(format(tmr, 'yyyy-MM-dd'));
 //   return format(tmr, 'yyyy-MM-dd');
 // }
-function taskFactory (title, description, date, priority) {
+function taskFactory (title, description, date, urgent) {
 
   //edit description
   //edit title
@@ -25,7 +25,7 @@ function taskFactory (title, description, date, priority) {
     description,
     createDate: getTodaysDate(),
     dueDate: date,
-    priority: false,
+    urgent: false,
     completeted: false
   }
 }

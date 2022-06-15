@@ -34,6 +34,9 @@ export default function createbar () {
   taskDate.type = 'date';
   taskDate.value = getTodaysDate();
 
+  const taskUrgent = document.createElement('input');
+  taskUrgent.type = 'checkbox';
+
   const taskBtn = document.createElement('button');
   taskBtn.classList.add('submit-button');
   taskBtn.type = 'button';
@@ -42,7 +45,6 @@ export default function createbar () {
     const task = newTask(getInputValues(e.target.parentElement.id));
     module.addTask(task);
     module.addTaskToDom(task);
-    console.log(module.returnLib());
   });
 
   const createEvent = document.createElement('div');
@@ -53,7 +55,7 @@ export default function createbar () {
   createEventTitle.innerHTML = 'Create An Event';
 
   const eventForm = document.createElement('form');
-  eventForm.classList.add('create-form');
+  eventForm.id = 'event-form';
   
   const eventTitle = document.createElement('input');
   eventTitle.classList.add('event-input');
@@ -67,19 +69,27 @@ export default function createbar () {
   eventDescript.type = 'text';
   eventDescript.placeholder = 'Description..';
   
+
   const eventDate = document.createElement('input');
   eventDate.classList.add('event-input')
   eventDate.type = 'date';
   eventDate.value = format(new Date(), "yyyy-MM-dd");
 
+  const eventUrgent = document.createElement('input');
+  eventUrgent.type = 'checkbox';
+
   const eventBtn = document.createElement('button');
   eventBtn.classList.add('submit-button');
   eventBtn.type = 'button';
   eventBtn.innerHTML = 'create-event';
+  eventBtn.addEventListener('click', e => {
+    const event = newTask(getInputValues(e.target.parentElement.id));
+    module.addTask(event);
+    module.addTaskToDom(event);
+  });
 
-
-  taskForm.append(taskTitle, taskDescript, taskDate, taskBtn);
-  eventForm.append(eventTitle, eventDescript, eventDate, eventBtn);
+  taskForm.append(taskTitle, taskDescript, taskDate, taskUrgent, taskBtn);
+  eventForm.append(eventTitle, eventDescript, eventDate, eventUrgent, eventBtn);
   createTask.append(createTaskTitle, taskForm);
   createEvent.append(createEventTitle, eventForm);
   div.append(createTask, createEvent);

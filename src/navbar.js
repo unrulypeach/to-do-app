@@ -1,3 +1,5 @@
+import { module } from "./modules";
+
 export default function navbar() {
   const div = document.createElement('div');
   div.classList.add('side-bar-container');
@@ -21,6 +23,7 @@ export default function navbar() {
   const urgent = document.createElement('li');
   urgent.classList.add('sort-opt');
   urgent.innerHTML = 'Urgent';
+  urgent.addEventListener('click', module.returnUrgentItems())
 
   const typeSect = document.createElement('ul');
   typeSect.classList.add('side-bar');
