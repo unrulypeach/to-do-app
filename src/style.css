@@ -46,8 +46,23 @@
   flex-grow: 3;
 }
 /* LEFT NAV DIV*/
+.search-label > span {
+  position: relative;
+  top: 27px;
+  left: 8px;
+  opacity: .8;
+}
+#search-input {
+  width: 80%;
+  margin-left: 10px;
+  padding-left: 22px;
+}
+  #search-input:focus {
+    border: none;
+    outline: none;
+  }
 .side-bar-container {
-  /* padding-top: 5vh; */
+  padding-top: 3vh;
   width: 15vw; 
   font-family: 'Barlow';
   font-weight: 500;
@@ -76,6 +91,7 @@
 .create-bar-container {
   flex-grow: .5;
   background-color: var(--sand);
+  padding-top: 5vh;
 }
 .create-bar-subhead {
   font-family: 'Barlow';
@@ -94,6 +110,7 @@ form > .submit-button {
   font-family: 'Barlow';
   font-weight: 600;
   font-size: 12px;
+  height: 1.5em;
   color: var(--white);
   background-color: var(--grape);
   border-style: none;

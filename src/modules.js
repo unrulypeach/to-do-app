@@ -1,3 +1,6 @@
+import { format } from 'date-fns';
+import { getTodaysDate } from './task';
+
 const module = (() => {
   let library = [];
 
@@ -7,8 +10,11 @@ const module = (() => {
 
   function returnLib(){
     return library
+  } 
+  function filterTodayItems(){
+    const filtered = library.filter(i => i.date == getTodaysDate());
+    refreshScreen(filtered);
   }
-
   function filterUrgentItems(){
     const filtered = library.filter(i => i.urgent === true);
     console.log(filtered);
@@ -93,6 +99,7 @@ const module = (() => {
     library,
     addTask,
     returnLib,
+    filterTodayItems,
     filterUrgentItems,
     refreshScreen,
     addTaskToDom

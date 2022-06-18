@@ -50,7 +50,7 @@ export default function createbar () {
   const taskBtn = document.createElement('button');
   taskBtn.classList.add('submit-button');
   taskBtn.type = 'button';
-  taskBtn.innerHTML = 'create-task';
+  taskBtn.innerHTML = 'create task';
   taskBtn.addEventListener('click', e => {
     const task = newTask(getInputValues(e.target.parentElement.id));
     module.addTask(task);
@@ -102,7 +102,7 @@ export default function createbar () {
   const eventBtn = document.createElement('button');
   eventBtn.classList.add('submit-button');
   eventBtn.type = 'button';
-  eventBtn.innerHTML = 'create-event';
+  eventBtn.innerHTML = 'create event';
   eventBtn.addEventListener('click', e => {
     const event = newTask(getInputValues(e.target.parentElement.id));
     module.addTask(event);
