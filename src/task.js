@@ -6,13 +6,6 @@ function getTodaysDate() {
 function getTodaysDatePretty(){
   return format(new Date(), "PP")
 }
-// function getTomDate() {
-//   const today = format(new Date(), 'yyyy-MM-dd');
-//   console.log(today);
-//   const tmr =  addDays(new Date(2022, 6, 13), 1);
-//   console.log(format(tmr, 'yyyy-MM-dd'));
-//   return format(tmr, 'yyyy-MM-dd');
-// }
 function taskFactory (title, description, date, urgent) {
 
   //edit description
@@ -25,7 +18,7 @@ function taskFactory (title, description, date, urgent) {
     description,
     createDate: getTodaysDate(),
     dueDate: date,
-    urgent: false,
+    urgent,
     completeted: false
   }
 }
@@ -37,11 +30,21 @@ function getInputValues(formId) {
   for (let item in inputsNodeList) {
     const input = inputsNodeList[item];
 
-    if (input.type != "button") {
+    if (input.type != "button" && input.childElementCount === 0) {
       taskInfo.push(input.value);
+    } else if (input.childElementCount > 0) {
+      for (let i = 0; i < input.childElementCount; i++) {
+        const it = input.childNodes[i];
+        if (it.hasChildNodes()) {
+          taskInfo.push(it.childNodes[1].checked);
+        } else {
+          taskInfo.push(it.value);
+        }
+      }
     }
   }
   const final = removeUndefined(taskInfo);
+  console.log(taskInfo);
   return final;
 }
 function removeUndefined(data)  {

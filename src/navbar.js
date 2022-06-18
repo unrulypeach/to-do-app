@@ -19,11 +19,14 @@ export default function navbar() {
   const upcoming = document.createElement('li');
   upcoming.classList.add('sort-opt');
   upcoming.innerHTML = 'Upcoming';
+  upcoming.addEventListener('click', e => {
+    module.refreshScreen(module.library)
+  });
 
   const urgent = document.createElement('li');
   urgent.classList.add('sort-opt');
   urgent.innerHTML = 'Urgent';
-  urgent.addEventListener('click', module.returnUrgentItems())
+  urgent.addEventListener('click', module.filterUrgentItems);
 
   const typeSect = document.createElement('ul');
   typeSect.classList.add('side-bar');

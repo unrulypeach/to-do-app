@@ -7,7 +7,6 @@ module.exports = {
     index: './src/index.js',
     navbar: './src/navbar.js',
     task: './src/task.js',
-    display: './src/displayTask.js',
     event: './src/event.js',
     create: './src/createbar.js',
     modules: './src/modules.js',

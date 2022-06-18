@@ -34,8 +34,18 @@ export default function createbar () {
   taskDate.type = 'date';
   taskDate.value = getTodaysDate();
 
+  const taskUrgentLabel = document.createElement('label');
+  taskUrgentLabel.classList.add('control-checkbox');
+  taskUrgentLabel.classList.add('control')
+
+  const tUrgentTitle = document.createElement('span');
+  tUrgentTitle.innerHTML = 'Urgent?'
+
   const taskUrgent = document.createElement('input');
   taskUrgent.type = 'checkbox';
+
+  const myCheck = document.createElement('div');
+  myCheck.classList.add('control_indicator');
 
   const taskBtn = document.createElement('button');
   taskBtn.classList.add('submit-button');
@@ -45,6 +55,7 @@ export default function createbar () {
     const task = newTask(getInputValues(e.target.parentElement.id));
     module.addTask(task);
     module.addTaskToDom(task);
+    module.returnLib();
   });
 
   const createEvent = document.createElement('div');
@@ -75,8 +86,18 @@ export default function createbar () {
   eventDate.type = 'date';
   eventDate.value = format(new Date(), "yyyy-MM-dd");
 
+  const eventUrgentLabel = document.createElement('label');
+  eventUrgentLabel.classList.add('control-checkbox');
+  eventUrgentLabel.classList.add('control');
+
+  const eUrgentTitle = document.createElement('span');
+  eUrgentTitle.innerHTML = 'Urgent?'
+
   const eventUrgent = document.createElement('input');
   eventUrgent.type = 'checkbox';
+
+  const myChecks = document.createElement('div');
+  myChecks.classList.add('control_indicator');
 
   const eventBtn = document.createElement('button');
   eventBtn.classList.add('submit-button');
@@ -88,8 +109,19 @@ export default function createbar () {
     module.addTaskToDom(event);
   });
 
-  taskForm.append(taskTitle, taskDescript, taskDate, taskUrgent, taskBtn);
-  eventForm.append(eventTitle, eventDescript, eventDate, eventUrgent, eventBtn);
+  const taskBtmRow = document.createElement('div');
+  taskBtmRow.classList.add('form-lastrow');
+  const eventBtmRow = document.createElement('div');
+  eventBtmRow.classList.add('form-lastrow');
+
+  taskUrgentLabel.append(tUrgentTitle, taskUrgent, myCheck);
+  taskBtmRow.append(taskDate, taskUrgentLabel)
+  taskForm.append(taskTitle, taskDescript, taskBtmRow, taskBtn);
+
+  eventUrgentLabel.append(eUrgentTitle, eventUrgent, myChecks);
+  eventBtmRow.append(eventDate, eventUrgentLabel);
+  eventForm.append(eventTitle, eventDescript, eventBtmRow, eventBtn);
+  
   createTask.append(createTaskTitle, taskForm);
   createEvent.append(createEventTitle, eventForm);
   div.append(createTask, createEvent);

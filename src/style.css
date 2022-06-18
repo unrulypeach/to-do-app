@@ -37,13 +37,12 @@
   --mauv: #633f64;
   --sand: #f4dec8;
   --white: #f8eee7;
-   
 }
 .main-container {
   display: flex;
   height: 100vh;
 }
-.tasks-container{
+.mid-container{
   flex-grow: 3;
 }
 /* LEFT NAV DIV*/
@@ -85,12 +84,11 @@
   text-align: center;
 }
 .create-opt > form {
-  display: flex;
-  flex-flow: column;
-}
-form > input {
   width: 85%;
   margin: auto;
+
+  display: flex;
+  flex-flow: column;
 }
 form > .submit-button {
   font-family: 'Barlow';
@@ -99,9 +97,23 @@ form > .submit-button {
   color: var(--white);
   background-color: var(--grape);
   border-style: none;
-  width: 85%;
-  margin: auto;
   border-radius: 5px;
+}
+.form-lastrow{
+  display: flex;
+}
+.urgent-label {
+  font-family: 'Barlow';
+  text-align: center;
+}
+.urgent-label > input {
+  box-shadow: none;
+  background-color: black;
+  border: solid 1px red;
+}
+.control-checkbox > span {
+  position: relative;
+  top: 2px;
 }
 /*CENTER DIV w/ TASKS*/
 #tasks-container-title {

@@ -8,14 +8,16 @@ export default function initPage(){
   main.classList.add('main-container');
 
   const midDiv = document.createElement('div');
-  midDiv.classList.add('tasks-container');
-  midDiv.id = 'tasks-container';
+  midDiv.classList.add('mid-container');
 
   const midTitle = document.createElement('h1');
   midTitle.id = 'tasks-container-title';
   midTitle.innerHTML = getTodaysDatePretty();
+
+  const tasksContainer = document.createElement('div');
+  tasksContainer.id = 'tasks-container';
   
-  midDiv.appendChild(midTitle);
+  midDiv.append(midTitle, tasksContainer);
   main.append(navbar(), midDiv, createbar());
   document.body.appendChild(main);
 }
