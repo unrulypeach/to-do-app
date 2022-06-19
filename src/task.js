@@ -6,7 +6,7 @@ function getTodaysDate() {
 function getTodaysDatePretty(){
   return format(new Date(), "PP")
 }
-function taskFactory (title, description, date, urgent) {
+function taskFactory (title, description, dueDate, urgent, tags) {
 
   //edit description
   //edit title
@@ -17,8 +17,9 @@ function taskFactory (title, description, date, urgent) {
     title,
     description,
     createDate: getTodaysDate(),
-    dueDate: date,
+    dueDate,
     urgent,
+    tags,
     completeted: false
   }
 }

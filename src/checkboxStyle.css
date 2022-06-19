@@ -21,12 +21,12 @@
 .control_indicator {
 	position: absolute;
 	margin-left: 5px;
-	top: 2px;
+	top: 3px;
 	left: 0;
-	height: 15px;
-	width: 15px;
+	height: 16px;
+	width: 16px;
 	background: var(--urgent-red-before);
-	border: 2px solid var(--urgent-red-after);
+	/* border: 2px solid var(--urgent-red-after); */
 	border-radius: 3px;
 }
 .control:hover input ~ .control_indicator {
