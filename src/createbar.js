@@ -1,6 +1,7 @@
 import {format, add} from 'date-fns';
 import { getTodaysDate, getInputValues, newTask } from './task';
 import { module } from './modules';
+import selectTag from './selectTag';
 import personalIconPic from './cottageFILL.svg';
 import workIconPic from './workFILL.svg';
 import travelPic from './luggageFILL.svg';
@@ -13,7 +14,7 @@ import megaphonePic from './megaphoneFILL.svg';
 import skatePic from './skateFILL.svg';
 import beerPic from './beerFILL.svg';
 
-export default function createbar () {
+function createbar () {
   const div = document.createElement('div');
   div.classList.add('create-bar-container');
 
@@ -64,16 +65,29 @@ export default function createbar () {
   const tagsContainer = document.createElement('div');
   tagsContainer.classList.add('tags-container');
 
+  //personal
   const personalTag = document.createElement('a');
   const pIcon = new Image (22, 22);
   pIcon.src = personalIconPic;
   pIcon.classList.add('icon-purple');
+  pIcon.classList.add('unused');
+  pIcon.id = 'personal';
+  pIcon.addEventListener('click', e => {
+    selectTag(e);
+  })
 
+  //work
   const workTag = document.createElement('a');
   const wIcon = new Image (22, 22);
   wIcon.src = workIconPic;
-  wIcon.classList.add('icon-purple'); 
+  wIcon.classList.add('icon-purple');
+  wIcon.classList.add('unused');
+  wIcon.id = 'work';
+  wIcon.addEventListener('click', e => {
+    selectTag(e);
+  })
 
+  //dropdown
   const tagsDropdown = document.createElement('div');
   tagsDropdown.classList.add('dropdown');
 
@@ -86,73 +100,118 @@ export default function createbar () {
 
   //travel
   const tagTravel = document.createElement('a');
-  tagTravel.classList.add('unused');
+  tagTravel.href = '#';
   const travelIcon = new Image (20, 20);
   travelIcon.src = travelPic;
   travelIcon.classList.add('dropdown-icons');
+  travelIcon.classList.add('unused');
+  travelIcon.id = 'travel';
+  travelIcon.addEventListener('click', e => {
+    selectTag(e);
+  })
 
   //dining
   const tagDine = document.createElement('a');
-  tagDine.classList.add('unused');
+  tagDine.href = '#';
   const dineIcon = new Image (20, 20);
   dineIcon.src = dinePic;
   dineIcon.classList.add('dropdown-icons');
-  
+  dineIcon.classList.add('unused');
+  dineIcon.id = 'dining';
+  dineIcon.addEventListener('click', e => {
+    selectTag(e);
+  })
+
   //cake
   const tagCake = document.createElement('a');
-  tagCake.classList.add('unused');
+  tagCake.href = '#';
   const cakeIcon = new Image (20, 20);
   cakeIcon.src = cakePic;
   cakeIcon.classList.add('dropdown-icons');
+  cakeIcon.classList.add('unused');
+  cakeIcon.id = 'birthdays';
+  cakeIcon.addEventListener('click', e => {
+    selectTag(e);
+  })
 
   //weights
   const tagWeight = document.createElement('a');
-  tagWeight.classList.add('unused');
+  tagWeight.href = '#';
   const weightIcon = new Image (20, 20);
   weightIcon.src = weightsPic;
   weightIcon.classList.add('dropdown-icons');
+  weightIcon.classList.add('unused');
+  weightIcon.id = 'excercise';
+  weightIcon.addEventListener('click', e => {
+    selectTag(e);
+  })
 
   //meeting
   const tagMeet = document.createElement('a');
-  tagMeet.classList.add('unused');
+  tagMeet.href = '#';
   const meetIcon = new Image (20, 20);
   meetIcon.src = meetPic;
   meetIcon.classList.add('dropdown-icons');
+  meetIcon.classList.add('unused');
+  meetIcon.id = 'meetings';
+  meetIcon.addEventListener('click', e => {
+    selectTag(e);
+  })
 
   //star
   const tagStar = document.createElement('a');
-  tagStar.classList.add('unused');
+  tagStar.href = '#';
   const starIcon = new Image (20, 20);
   starIcon.src = starPic;
   starIcon.classList.add('dropdown-icons');
+  starIcon.classList.add('unused');
+  starIcon.id = 'favorites';
+  starIcon.addEventListener('click', e => {
+    selectTag(e);
+  })
 
   //megaphone
   const tagMegafone = document.createElement('a');
-  tagMegafone.classList.add('unused');
+  tagMegafone.href = '#';
   const megafoneIcon = new Image (22, 22);
   megafoneIcon.src = megaphonePic;
   megafoneIcon.classList.add('dropdown-icons');
+  megafoneIcon.classList.add('unused');
+  megafoneIcon.id = 'campaigning';
+  megafoneIcon.addEventListener('click', e => {
+    selectTag(e);
+  })
 
   //skate
   const tagSkate = document.createElement('a');
-  tagSkate.classList.add('unused');
+  tagSkate.href = '#';
   const skateIcon = new Image (20, 20);
   skateIcon.src = skatePic;
   skateIcon.classList.add('dropdown-icons');
+  skateIcon.classList.add('unused');
+  skateIcon.id = 'intramural';
+  skateIcon.addEventListener('click', e => {
+    selectTag(e);
+  })
 
   //beer
   const tagBeer = document.createElement('a');
-  tagBeer.classList.add('unused');
+  tagBeer.href = '#';
   const beerIcon = new Image (20, 20);
   beerIcon.src = beerPic;
   beerIcon.classList.add('dropdown-icons');
+  beerIcon.classList.add('unused');
+  beerIcon.id = 'drinks';
+  beerIcon.addEventListener('click', e => {
+    selectTag(e);
+  })
 
   const taskBtn = document.createElement('button');
   taskBtn.classList.add('submit-button');
   taskBtn.type = 'button';
   taskBtn.innerHTML = 'create task';
   taskBtn.addEventListener('click', e => {
-    const task = newTask(getInputValues(e.target.parentElement.id));
+    const task = newTask(getInputValues(e.target.parentElement.parentElement.id));
     module.addTask(task);
     module.addTaskToDom(task);
     module.returnLib();
@@ -162,6 +221,9 @@ export default function createbar () {
 
   const taskBtmRow = document.createElement('div');
   taskBtmRow.classList.add('form-lastrow');
+
+  const actualTagContain = document.createElement('div');
+  actualTagContain.id = 'tag-container';
 
   personalTag.appendChild(pIcon);
   workTag.appendChild(wIcon);
@@ -187,17 +249,52 @@ export default function createbar () {
     tagBeer
   );
 
-  tagsDropdown.append(tagsBtn, tagsList);
-
-  tagsContainer.append(personalTag, workTag, tagsDropdown, taskBtn);
-
-  taskUrgentLabel.append(tUrgentTitle, taskUrgent, myCheck);
-  taskBtmRow.append(taskDate, taskUrgentLabel)
-
-  taskForm.append(taskTitle, taskDescript, taskBtmRow, tagsContainer);
+  tagsDropdown.append(
+    tagsBtn,
+    tagsList
+  );
   
-  createTask.append(createTaskTitle, taskForm);
-  div.append(createTask);
+  actualTagContain.append(
+    personalTag,
+    workTag,
+    tagsDropdown
+  )
 
+  tagsContainer.append(
+    actualTagContain,
+    taskBtn
+  );
+
+  taskUrgentLabel.append(
+    tUrgentTitle,
+    taskUrgent,
+    myCheck
+  );
+
+  taskBtmRow.append(
+    taskDate,
+    taskUrgentLabel
+  );
+
+  taskForm.append(
+    taskTitle,
+    taskDescript,
+    taskBtmRow,
+    tagsContainer
+  );
+  
+  createTask.append(
+    createTaskTitle,
+    taskForm
+  
+  );
+  
+  div.append(createTask);
   return div;
 }
+
+function addIconToTask (obj) {
+  
+}
+
+export {createbar}

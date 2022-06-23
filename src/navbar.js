@@ -21,6 +21,9 @@ export default function navbar() {
   const searchBar = document.createElement('input');
   searchBar.type = 'text';
   searchBar.id = 'search-input'
+  searchBar.addEventListener('input', e => {
+    module.refreshScreen(module.returnLib().filter( i => i.hasOwnProperty(e.target.value)));
+  })
 
   const sortSect = document.createElement('ul');
   sortSect.classList.add('side-bar');
@@ -73,6 +76,7 @@ export default function navbar() {
 
   const personal = document.createElement('li');
   personal.classList.add('type-opt');
+  personal.addEventListener('click', module.filterPersonalItems);
   
   const personalHead = document.createElement('span');
   personalHead.classList.add('sort-title')
@@ -85,6 +89,7 @@ export default function navbar() {
 
   const work = document.createElement('li');
   work.classList.add('type-opt');
+  work.addEventListener('click', module.filterWorkItems);
 
   const workHead = document.createElement('span');
   workHead.classList.add('sort-title')
@@ -93,7 +98,11 @@ export default function navbar() {
   const workIcon = document.createElement('span');
   const wIcon = new Image (22, 22);
   wIcon.src = workIconPic;
-  wIcon.classList.add('icon-white');  
+  wIcon.classList.add('icon-white');
+  
+  const addTag = document.createElement('li');
+  addTag.classList.add('type-opt', 'add-tags');
+  addTag.innerHTML = '+';
 
   searchIcon.appendChild(sIcon);
   searchLabel.append(searchIcon, searchBar);
@@ -115,6 +124,6 @@ export default function navbar() {
 
   sortSect.append(today, upcoming, urgent);
   typeSect.append(personal, work);
-  div.append(searchLabel, sortSect, typeSect);
+  div.append(searchLabel, sortSect, typeSect, addTag);
   return div;
 }

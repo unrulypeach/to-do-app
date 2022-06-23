@@ -10,7 +10,8 @@ module.exports = {
     event: './src/event.js',
     create: './src/createbar.js',
     modules: './src/modules.js',
-    createpg: './src/createPage.js'
+    createpg: './src/createPage.js',
+    tagsfns: './src/selectTag.js'
   },
   devServer: {
     static: './dist',

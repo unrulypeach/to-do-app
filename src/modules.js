@@ -2,6 +2,17 @@ import { compareAsc, format } from 'date-fns';
 import { getTodaysDate } from './task';
 import garbagePic from './garbage0.svg';
 import pencilPic from './edit0.svg';
+import personalIconPic from './cottageFILL.svg';
+import workIconPic from './workFILL.svg';
+import travelPic from './luggageFILL.svg';
+import dinePic from './dineFILL.svg';
+import cakePic from './cakeFILL.svg';
+import weightsPic from './weightsFILL.svg';
+import meetPic from './meetingsFILL.svg';
+import starPic from './starFILL.svg';
+import megaphonePic from './megaphoneFILL.svg';
+import skatePic from './skateFILL.svg';
+import beerPic from './beerFILL.svg';
 
 const module = (() => {
   let library = [
@@ -10,6 +21,7 @@ const module = (() => {
       createDate: "2022-06-18",
       description: "today, upcoming, urgent",
       dueDate: "2022-06-18",
+      tags: "personal work",
       title: "task 1",
       urgent: true
     },
@@ -18,6 +30,7 @@ const module = (() => {
       createDate: "2022-06-18",
       description: "today, upcoming",
       dueDate: "2022-06-18",
+      tags: "personal",
       title: "task 2",
       urgent: false
     },
@@ -26,6 +39,7 @@ const module = (() => {
       createDate: "2022-06-18",
       description: "upcoming, urgent",
       dueDate: "2022-06-19",
+      tags: "work",
       title: "task 3",
       urgent: true
     },
@@ -34,6 +48,7 @@ const module = (() => {
       createDate: "2022-06-18",
       description: "upcoming",
       dueDate: "2022-06-19",
+      tags: "work personal travel",
       title: "task 4",
       urgent: false
     }
@@ -41,10 +56,6 @@ const module = (() => {
 
   function addTask(obj){
     library.push(obj)
-  }
-
-  function createNewLibrary(libName) {
-    
   }
 
   function returnLib(){
@@ -62,6 +73,15 @@ const module = (() => {
     refreshScreen(filtered);
   }
 
+  function filterPersonalItems(){
+    const filtered = library.filter(i => i.tags.includes('personal'));
+    refreshScreen(filtered);
+  }
+
+  function filterWorkItems(){
+    const filtered = library.filter(i => i.tags.includes('work'));
+    refreshScreen(filtered);
+  }
   function refreshScreen(arr){
     removeAllTasks();
     for (let item in arr) {
@@ -76,7 +96,6 @@ const module = (() => {
     for (let i=containerItems; i>=0; i--) {
       container[i].remove();
     }
-    
   }
 
   function addTaskToDom(task){
@@ -128,6 +147,72 @@ const module = (() => {
     }
 
     //tags
+    const tagSpan = document.createElement('span');
+    if (obj.tags.includes('personal')) {
+      const anIcon = new Image (18, 18);
+      anIcon.src = personalIconPic;
+      anIcon.classList.add('icon-purple');
+      tagSpan.appendChild(anIcon);
+    }
+    if (obj.tags.includes('work')) {
+      const anIcon = new Image (18, 18);
+      anIcon.src = workIconPic;
+      anIcon.classList.add('icon-purple');
+      tagSpan.appendChild(anIcon);
+    }
+    if (obj.tags.includes('travel')){
+      const anIcon = new Image (18, 18);
+      anIcon.src = travelPic;
+      anIcon.classList.add('icon-purple');
+      tagSpan.appendChild(anIcon);
+    }
+    if (obj.tags.includes('dining')){
+      const anIcon = new Image (18, 18);
+      anIcon.src = dinePic;
+      anIcon.classList.add('icon-purple');
+      tagSpan.appendChild(anIcon);
+    }
+    if (obj.tags.includes('birthdays')){
+      const anIcon = new Image (18, 18);
+      anIcon.src = cakePic;
+      anIcon.classList.add('icon-purple');
+      tagSpan.appendChild(anIcon);
+    }
+    if (obj.tags.includes('excercise')){
+      const anIcon = new Image (18, 18);
+      anIcon.src = weightsPic;
+      anIcon.classList.add('icon-purple');
+    }
+    if (obj.tags.includes('meetings')){
+      const anIcon = new Image (18, 18);
+      anIcon.src = meetPic;
+      anIcon.classList.add('icon-purple');
+      tagSpan.appendChild(anIcon);
+    }
+    if (obj.tags.includes('favorites')){
+      const anIcon = new Image (18, 18);
+      anIcon.src = starPic;
+      anIcon.classList.add('icon-purple');
+      tagSpan.appendChild(anIcon);
+    }
+    if (obj.tags.includes('campaigning')){
+      const anIcon = new Image (18, 18);
+      anIcon.src = megaphonePic;
+      anIcon.classList.add('icon-purple');
+      tagSpan.appendChild(anIcon);
+    }
+    if (obj.tags.includes('intramural')){
+      const anIcon = new Image (18, 18);
+      anIcon.src = skatePic;
+      anIcon.classList.add('icon-purple');
+      tagSpan.appendChild(anIcon);
+    }
+    if (obj.tags.includes('drinks')){
+      const anIcon = new Image (18, 18);
+      anIcon.src = beerPic;
+      anIcon.classList.add('icon-purple');
+      tagSpan.appendChild(anIcon);
+    }
 
     //edit button
     const editBtn = document.createElement('span');
@@ -148,7 +233,14 @@ const module = (() => {
     delBtn.appendChild(delPic);
     bContain.append(complete, bInput);
     titleDescript.append(title, descript);
-    taskContainer.append(bContain, titleDescript, date, editBtn, delBtn);
+    taskContainer.append(
+      bContain,
+      titleDescript,
+      tagSpan,
+      date,
+      editBtn,
+      delBtn
+    );
     return taskContainer
   }
 
@@ -157,6 +249,8 @@ const module = (() => {
     returnLib,
     filterTodayItems,
     filterUrgentItems,
+    filterPersonalItems,
+    filterWorkItems,
     refreshScreen,
     addTaskToDom
   }

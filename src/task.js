@@ -37,7 +37,11 @@ function getInputValues(formId) {
       for (let i = 0; i < input.childElementCount; i++) {
         const it = input.childNodes[i];
         if (it.hasChildNodes()) {
-          taskInfo.push(it.childNodes[1].checked);
+          if (it.childNodes[1].checked){
+            taskInfo.push(it.childNodes[1].checked);
+          } else {
+            taskInfo.push(input.classList);
+          }
         } else {
           taskInfo.push(it.value);
         }

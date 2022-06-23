@@ -33,6 +33,8 @@
   font-style: normal;
 }
 :root{
+  --white-icon: invert(83%) sepia(14%) saturate(402%) hue-rotate(343deg) brightness(108%) contrast(91%);
+  --purple-checked-icon: invert(27%) sepia(13%) saturate(1492%) hue-rotate(250deg) brightness(97%) contrast(90%);
   --grape: #94618e;
   --mauv: #633f64;
   --sand: #f4dec8;
@@ -94,17 +96,20 @@
   margin-left: 5px;
 }
 .icon-white{
-  filter: invert(83%) sepia(14%) saturate(402%) hue-rotate(343deg) brightness(108%) contrast(91%);
+  filter: var(--white-icon);
 }
-.icon-purple:hover{
+.icon-purple:hover.unused{
   filter: invert(48%) sepia(12%) saturate(1545%) hue-rotate(256deg) brightness(85%) contrast(83%);
 }
-.icon-purple{
+.icon-purple.unused{
   filter: invert(59%) sepia(4%) saturate(3167%) hue-rotate(255deg) brightness(95%) contrast(86%);
 }
-.icon-purple:checked{
-  filter: invert(27%) sepia(13%) saturate(1492%) hue-rotate(250deg) brightness(97%) contrast(90%);
-
+/* below means seleced */
+.icon-purple {
+  filter: var(--purple-checked-icon);
+}
+.icon-purple:hover {
+  filter: invert(48%) sepia(12%) saturate(1500%) hue-rotate(256deg) brightness(75%) contrast(83%);
 }
 .todays-date {
   display: block;
@@ -157,14 +162,19 @@
   position: relative;
   top: 2px;
 }
-.tags-container{
+.tags-container {
   display: flex;
-  justify-items: baseline;
   margin-top: 5px;
 }
-.tags-container > a {
+#tag-container {
+  display: flex;
+}
+#tag-container > a {
   margin-top: 5px;
   margin-right: 2px;
+}
+a.used{
+  filter: var(--purple-checked-icon);
 }
 .submit-button {
   font-family: 'Barlow';
