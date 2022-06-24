@@ -55,6 +55,7 @@ const module = (() => {
   ];
 
   function addTask(obj){
+    console.log(obj);
     library.push(obj)
   }
 
@@ -62,6 +63,28 @@ const module = (() => {
     console.log(library);
     return library
   } 
+
+  function filterSearchItems(item) {
+    const filtered = [];
+
+    for (let task in library) {
+      const curr = Object.entries(library[task]);
+
+      for (let item in curr) {
+        const prop = curr[item][1];
+
+        if (typeof prop != "boolean") {
+
+          if (prop.includes(item)) {
+
+            filtered.push(library[task]);
+          }
+        }
+      }
+    }
+    console.log(filtered);
+    refreshScreen(filtered);
+  }
 
   function filterTodayItems(){
     const filtered = library.filter(i => i.dueDate == getTodaysDate());
@@ -82,6 +105,45 @@ const module = (() => {
     const filtered = library.filter(i => i.tags.includes('work'));
     refreshScreen(filtered);
   }
+
+  function createFilter(tagName, tagSrc){
+    const editedTagName = tagName.slice(4);
+    
+    const newDiv = document.createElement('li');
+    newDiv.classList.add('type-opt');
+    newDiv.id = `nav${editedTagName}`
+
+    const iconSpan = document.createElement('span');
+
+    const iconPic = new Image (20, 20);
+    iconPic.src = tagSrc;
+    iconPic.classList.add('icon-white');
+
+    const titleSpan = document.createElement('span');
+    titleSpan.classList.add('sort-title');
+    titleSpan.innerHTML = editedTagName;
+
+    newDiv.addEventListener('click', e => {
+      const filtered = library.filter(i => i.tags.includes(editedTagName.toLowerCase()));
+      console.log(filtered);
+      refreshScreen(filtered);
+    })
+
+    const delBtn = document.createElement('button');
+    delBtn.classList.add('delete-task-tag');
+    delBtn.addEventListener('click', e => {
+      console.log(e.target);
+      refreshScreen(returnLib()); //this is not working, page is not refreshing with full library
+      e.target.parentNode.remove();
+      e.stopPropagation
+    })
+
+
+    iconSpan.append(iconPic);
+    newDiv.append(iconSpan, titleSpan, delBtn);
+    document.body.childNodes[1].childNodes[0].childNodes[2].appendChild(newDiv);
+  }
+
   function refreshScreen(arr){
     removeAllTasks();
     for (let item in arr) {
@@ -182,6 +244,7 @@ const module = (() => {
       const anIcon = new Image (18, 18);
       anIcon.src = weightsPic;
       anIcon.classList.add('icon-purple');
+      tagSpan.appendChild(anIcon);
     }
     if (obj.tags.includes('meetings')){
       const anIcon = new Image (18, 18);
@@ -247,10 +310,12 @@ const module = (() => {
   return {
     addTask,
     returnLib,
+    filterSearchItems,
     filterTodayItems,
     filterUrgentItems,
     filterPersonalItems,
     filterWorkItems,
+    createFilter,
     refreshScreen,
     addTaskToDom
   }

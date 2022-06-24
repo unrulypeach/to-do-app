@@ -5,6 +5,15 @@ import upcomingIconPic from './upcoming.png';
 import urgentIconPic from './urgent.png';
 import personalIconPic from './cottageFILL.svg';
 import workIconPic from './workFILL.svg';
+import travelPic from './luggageFILL.svg';
+import dinePic from './dineFILL.svg';
+import cakePic from './cakeFILL.svg';
+import weightsPic from './weightsFILL.svg';
+import meetPic from './meetingsFILL.svg';
+import starPic from './starFILL.svg';
+import megaphonePic from './megaphoneFILL.svg';
+import skatePic from './skateFILL.svg';
+import beerPic from './beerFILL.svg';
 
 export default function navbar() {
   const div = document.createElement('div');
@@ -22,7 +31,7 @@ export default function navbar() {
   searchBar.type = 'text';
   searchBar.id = 'search-input'
   searchBar.addEventListener('input', e => {
-    module.refreshScreen(module.returnLib().filter( i => i.hasOwnProperty(e.target.value)));
+    module.filterSearchItems(e.target.value);
   })
 
   const sortSect = document.createElement('ul');
@@ -99,10 +108,152 @@ export default function navbar() {
   const wIcon = new Image (22, 22);
   wIcon.src = workIconPic;
   wIcon.classList.add('icon-white');
+
+  //dropdown
+  const tagsDropdown = document.createElement('div');
+  tagsDropdown.classList.add('dropdown', 'nav-drop');
+
+  const tagsBtn = document.createElement('button');
+  tagsBtn.classList.add('dropbtn', 'nav-drop');
+  tagsBtn.innerHTML = '+';
+
+  const tagsList = document.createElement('div');
+  tagsList.classList.add('dropdown-content');
+
+  //travel
+  const tagTravel = document.createElement('a');
+  tagTravel.href = '#';
+  const travelIcon = new Image (20, 20);
+  travelIcon.src = travelPic;
+  travelIcon.classList.add('dropdown-icons');
+  travelIcon.classList.add('unused');
+  travelIcon.id = 'leftTravel';
+  travelIcon.addEventListener('click', e => {
+    module.createFilter(e.target.id, e.target.src);
+  })
+
+  //dining
+  const tagDine = document.createElement('a');
+  tagDine.href = '#';
+  const dineIcon = new Image (20, 20);
+  dineIcon.src = dinePic;
+  dineIcon.classList.add('dropdown-icons');
+  dineIcon.classList.add('unused');
+  dineIcon.id = 'leftDining';
+  dineIcon.addEventListener('click', e => {
+    module.createFilter(e.target.id, e.target.src);
+  })
+
+  //cake
+  const tagCake = document.createElement('a');
+  tagCake.href = '#';
+  const cakeIcon = new Image (20, 20);
+  cakeIcon.src = cakePic;
+  cakeIcon.classList.add('dropdown-icons');
+  cakeIcon.classList.add('unused');
+  cakeIcon.id = 'leftBirthdays';
+  cakeIcon.addEventListener('click', e => {
+    module.createFilter(e.target.id, e.target.src);
+  })
+
+  //weights
+  const tagWeight = document.createElement('a');
+  tagWeight.href = '#';
+  const weightIcon = new Image (20, 20);
+  weightIcon.src = weightsPic;
+  weightIcon.classList.add('dropdown-icons');
+  weightIcon.classList.add('unused');
+  weightIcon.id = 'leftExcercise';
+  weightIcon.addEventListener('click', e => {
+    module.createFilter(e.target.id, e.target.src);
+  })
+
+  //meeting
+  const tagMeet = document.createElement('a');
+  tagMeet.href = '#';
+  const meetIcon = new Image (20, 20);
+  meetIcon.src = meetPic;
+  meetIcon.classList.add('dropdown-icons');
+  meetIcon.classList.add('unused');
+  meetIcon.id = 'leftMeetings';
+  meetIcon.addEventListener('click', e => {
+    module.createFilter(e.target.id, e.target.src);
+  })
+
+  //star
+  const tagStar = document.createElement('a');
+  tagStar.href = '#';
+  const starIcon = new Image (20, 20);
+  starIcon.src = starPic;
+  starIcon.classList.add('dropdown-icons');
+  starIcon.classList.add('unused');
+  starIcon.id = 'leftFavorites';
+  starIcon.addEventListener('click', e => {
+    module.createFilter(e.target.id, e.target.src);
+  })
+
+  //megaphone
+  const tagMegafone = document.createElement('a');
+  tagMegafone.href = '#';
+  const megafoneIcon = new Image (22, 22);
+  megafoneIcon.src = megaphonePic;
+  megafoneIcon.classList.add('dropdown-icons');
+  megafoneIcon.classList.add('unused');
+  megafoneIcon.id = 'leftCampaigning';
+  megafoneIcon.addEventListener('click', e => {
+    module.createFilter(e.target.id, e.target.src);
+  })
+
+  //skate
+  const tagSkate = document.createElement('a');
+  tagSkate.href = '#';
+  const skateIcon = new Image (20, 20);
+  skateIcon.src = skatePic;
+  skateIcon.classList.add('dropdown-icons');
+  skateIcon.classList.add('unused');
+  skateIcon.id = 'leftIntramural';
+  skateIcon.addEventListener('click', e => {
+    module.createFilter(e.target.id, e.target.src);
+  })
+
+  //beer
+  const tagBeer = document.createElement('a');
+  tagBeer.href = '#';
+  const beerIcon = new Image (20, 20);
+  beerIcon.src = beerPic;
+  beerIcon.classList.add('dropdown-icons');
+  beerIcon.classList.add('unused');
+  beerIcon.id = 'leftDrinks';
+  beerIcon.addEventListener('click', e => {
+    module.createFilter(e.target.id, e.target.src);
+  })
+
+  tagTravel.appendChild(travelIcon);
+  tagDine.appendChild(dineIcon);
+  tagCake.appendChild(cakeIcon);
+  tagWeight.appendChild(weightIcon);
+  tagMeet.appendChild(meetIcon);
+  tagStar.appendChild(starIcon);
+  tagMegafone.appendChild(megafoneIcon);
+  tagSkate.appendChild(skateIcon);
+  tagBeer.appendChild(beerIcon);
+
+  tagsList.append(
+    tagTravel,
+    tagDine,
+    tagCake,
+    tagWeight,
+    tagMeet,
+    tagStar,
+    tagMegafone,
+    tagSkate,
+    tagBeer
+  );
   
-  const addTag = document.createElement('li');
-  addTag.classList.add('type-opt', 'add-tags');
-  addTag.innerHTML = '+';
+  tagsDropdown.append(
+    tagsBtn,
+    tagsList
+  );
 
   searchIcon.appendChild(sIcon);
   searchLabel.append(searchIcon, searchBar);
@@ -124,6 +275,6 @@ export default function navbar() {
 
   sortSect.append(today, upcoming, urgent);
   typeSect.append(personal, work);
-  div.append(searchLabel, sortSect, typeSect, addTag);
+  div.append(searchLabel, sortSect, typeSect, tagsDropdown);
   return div;
 }

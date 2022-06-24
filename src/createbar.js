@@ -56,6 +56,7 @@ function createbar () {
   tUrgentTitle.innerHTML = 'Urgent?'
 
   const taskUrgent = document.createElement('input');
+  taskUrgent.classList.add('task-input');
   taskUrgent.type = 'checkbox';
 
   const myCheck = document.createElement('div');
@@ -211,7 +212,7 @@ function createbar () {
   taskBtn.type = 'button';
   taskBtn.innerHTML = 'create task';
   taskBtn.addEventListener('click', e => {
-    const task = newTask(getInputValues(e.target.parentElement.parentElement.id));
+    const task = newTask(getInputValues());
     module.addTask(task);
     module.addTaskToDom(task);
     module.returnLib();

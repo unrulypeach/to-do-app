@@ -23,36 +23,23 @@ function taskFactory (title, description, dueDate, urgent, tags) {
     completeted: false
   }
 }
-//cycle through form childNodes to receive inputs
-function getInputValues(formId) {
-  const inputsNodeList = document.getElementById(formId).childNodes;
-  let taskInfo = [];
 
-  for (let item in inputsNodeList) {
-    const input = inputsNodeList[item];
-
-    if (input.type != "button" && input.childElementCount === 0) {
-      taskInfo.push(input.value);
-    } else if (input.childElementCount > 0) {
-      for (let i = 0; i < input.childElementCount; i++) {
-        const it = input.childNodes[i];
-        if (it.hasChildNodes()) {
-          if (it.childNodes[1].checked){
-            taskInfo.push(it.childNodes[1].checked);
-          } else {
-            taskInfo.push(input.classList);
-          }
-        } else {
-          taskInfo.push(it.value);
-        }
-      }
+function getInputValues() {
+  const final = [];
+  const list = document.getElementsByClassName('task-input');
+  for (let item in list) {
+    if (list[item].type != 'checkbox'){
+      final.push(list[item].value);
+    } else {
+      final.push(list[item].checked);
     }
   }
-  const final = removeUndefined(taskInfo);
-  console.log(taskInfo);
-  return final;
+  const tagList = document.getElementById('tag-container');
+  final.push(tagList.className);
+  console.log(removeUndefined(final));
+  return removeUndefined(final);
 }
-function removeUndefined(data)  {
+function removeUndefined(data) {
   return data.filter( element =>  element !== undefined)
 }
 function newTask(taskFactoryParams) {
