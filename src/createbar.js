@@ -73,7 +73,7 @@ function createbar () {
   pIcon.classList.add('icon-purple');
   pIcon.classList.add('unused');
   pIcon.id = 'personal';
-  pIcon.addEventListener('click', e => {
+  personalTag.addEventListener('click', e => {
     selectTag(e);
   })
 
@@ -84,7 +84,7 @@ function createbar () {
   wIcon.classList.add('icon-purple');
   wIcon.classList.add('unused');
   wIcon.id = 'work';
-  wIcon.addEventListener('click', e => {
+  workTag.addEventListener('click', e => {
     selectTag(e);
   })
 
@@ -107,7 +107,7 @@ function createbar () {
   travelIcon.classList.add('dropdown-icons');
   travelIcon.classList.add('unused');
   travelIcon.id = 'travel';
-  travelIcon.addEventListener('click', e => {
+  tagTravel.addEventListener('click', e => {
     selectTag(e);
   })
 
@@ -119,7 +119,7 @@ function createbar () {
   dineIcon.classList.add('dropdown-icons');
   dineIcon.classList.add('unused');
   dineIcon.id = 'dining';
-  dineIcon.addEventListener('click', e => {
+  tagDine.addEventListener('click', e => {
     selectTag(e);
   })
 
@@ -131,7 +131,7 @@ function createbar () {
   cakeIcon.classList.add('dropdown-icons');
   cakeIcon.classList.add('unused');
   cakeIcon.id = 'birthdays';
-  cakeIcon.addEventListener('click', e => {
+  tagCake.addEventListener('click', e => {
     selectTag(e);
   })
 
@@ -143,7 +143,7 @@ function createbar () {
   weightIcon.classList.add('dropdown-icons');
   weightIcon.classList.add('unused');
   weightIcon.id = 'excercise';
-  weightIcon.addEventListener('click', e => {
+  tagWeight.addEventListener('click', e => {
     selectTag(e);
   })
 
@@ -155,7 +155,7 @@ function createbar () {
   meetIcon.classList.add('dropdown-icons');
   meetIcon.classList.add('unused');
   meetIcon.id = 'meetings';
-  meetIcon.addEventListener('click', e => {
+  tagMeet.addEventListener('click', e => {
     selectTag(e);
   })
 
@@ -167,7 +167,7 @@ function createbar () {
   starIcon.classList.add('dropdown-icons');
   starIcon.classList.add('unused');
   starIcon.id = 'favorites';
-  starIcon.addEventListener('click', e => {
+  tagStar.addEventListener('click', e => {
     selectTag(e);
   })
 
@@ -179,7 +179,7 @@ function createbar () {
   megafoneIcon.classList.add('dropdown-icons');
   megafoneIcon.classList.add('unused');
   megafoneIcon.id = 'campaigning';
-  megafoneIcon.addEventListener('click', e => {
+  tagMegafone.addEventListener('click', e => {
     selectTag(e);
   })
 
@@ -191,7 +191,7 @@ function createbar () {
   skateIcon.classList.add('dropdown-icons');
   skateIcon.classList.add('unused');
   skateIcon.id = 'intramural';
-  skateIcon.addEventListener('click', e => {
+  tagSkate.addEventListener('click', e => {
     selectTag(e);
   })
 
@@ -203,7 +203,7 @@ function createbar () {
   beerIcon.classList.add('dropdown-icons');
   beerIcon.classList.add('unused');
   beerIcon.id = 'drinks';
-  beerIcon.addEventListener('click', e => {
+  tagBeer.addEventListener('click', e => {
     selectTag(e);
   })
 
