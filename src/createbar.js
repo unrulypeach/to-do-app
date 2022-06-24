@@ -18,6 +18,13 @@ function createbar () {
   const div = document.createElement('div');
   div.classList.add('create-bar-container');
 
+  const closeBar = document.createElement('button');
+  closeBar.classList.add('close-create-bar');
+  closeBar.innerHTML = 'X';
+  closeBar.addEventListener('click', e => {
+    e.target.parentNode.parentNode.classList.toggle('hide');
+  })
+
   const createTask = document.createElement('div');
   createTask.classList.add('create-opt');
 
@@ -286,6 +293,7 @@ function createbar () {
   
   createTask.append(
     createTaskTitle,
+    closeBar,
     taskForm
   
   );

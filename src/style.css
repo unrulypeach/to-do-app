@@ -90,6 +90,7 @@
 }
   .sort-opt:hover, .type-opt:hover{
     background-color: rgb(148, 166, 172);
+    cursor: pointer;
   }
 
 .sort-title{
@@ -136,6 +137,7 @@
   margin-left: auto;
   margin-right: 5px;
   padding-bottom: 4px;
+  line-height: 2px;
   color: var(--sand);
 }
   .delete-task-tag:hover{
@@ -148,6 +150,26 @@
   background-color: var(--sand);
   padding-top: 5vh;
 }
+.hide {
+  display: none;
+}
+.close-create-bar {
+  font-family: 'Barlow';
+  font-size: 16px;
+  font-weight: 500;
+  width: 23px;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--grape);
+  color: var(--white);
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+  .close-create-bar:hover{
+    background-color: var(--mauv);
+  }
+
 .create-bar-subhead {
   font-family: 'Barlow';
   font-weight: 500;
@@ -208,6 +230,9 @@ a.used{
   border-style: none;
   border-radius: 5px;
 }
+  .submit-button:hover{
+    background-color: var(--mauv);
+  }
 /*CENTER DIV w/ TASKS*/
 #tasks-container-title {
   font-family: 'Barlow';

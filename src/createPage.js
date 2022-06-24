@@ -14,10 +14,18 @@ export default function initPage(){
   midTitle.id = 'tasks-container-title';
   midTitle.innerHTML = getTodaysDatePretty();
 
+  const openBar = document.createElement('button');
+  openBar.classList.add('close-create-bar');
+  openBar.innerHTML = '+'
+  openBar.addEventListener( 'click', e => {
+    e.target.parentNode.nextElementSibling.classList.toggle('hide');
+  });
+  
+
   const tasksContainer = document.createElement('div');
   tasksContainer.id = 'tasks-container';
   
-  midDiv.append(midTitle, tasksContainer);
+  midDiv.append(openBar, midTitle, tasksContainer);
   main.append(navbar(), midDiv, createbar());
   document.body.appendChild(main);
 }
