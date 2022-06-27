@@ -139,7 +139,7 @@ const module = (() => {
 
     iconSpan.append(iconPic);
     newDiv.append(iconSpan, titleSpan, delBtn);
-    document.body.childNodes[1].childNodes[0].childNodes[2].appendChild(newDiv);
+    document.body.childNodes[0].childNodes[0].childNodes[2].appendChild(newDiv);
   }
 
   function refreshScreen(arr){
