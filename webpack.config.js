@@ -11,7 +11,7 @@ module.exports = {
     create: './src/createbar.js',
     modules: './src/modules.js',
     createpg: './src/createPage.js',
-    tagsfns: './src/selectTag.js'
+    tagsfns: './src/selectTag.js',
   },
   devServer: {
     static: './dist',

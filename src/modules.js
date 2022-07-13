@@ -15,64 +15,79 @@ import skatePic from './skateFILL.svg';
 import beerPic from './beerFILL.svg';
 
 const module = (() => {
-  let library = [
+  const library = [
     {
       completed: false,
-      createDate: "2022-06-18",
-      description: "today, upcoming, urgent",
-      dueDate: "2022-06-18",
-      tags: "personal work",
-      title: "task 1",
-      urgent: true
+      createDate: '2022-06-18',
+      description: 'today, upcoming, urgent',
+      dueDate: '2022-06-18',
+      tags: 'personal work',
+      title: 'task 1',
+      urgent: true,
     },
     {
       completed: false,
-      createDate: "2022-06-18",
-      description: "today, upcoming",
-      dueDate: "2022-06-18",
-      tags: "personal",
-      title: "task 2",
-      urgent: false
+      createDate: '2022-06-18',
+      description: 'today, upcoming',
+      dueDate: '2022-06-18',
+      tags: 'personal',
+      title: 'task 2',
+      urgent: false,
     },
     {
       completed: false,
-      createDate: "2022-06-18",
-      description: "upcoming, urgent",
-      dueDate: "2022-06-19",
-      tags: "work",
-      title: "task 3",
-      urgent: true
+      createDate: '2022-06-18',
+      description: 'upcoming, urgent',
+      dueDate: '2022-06-19',
+      tags: 'work',
+      title: 'task 3',
+      urgent: true,
     },
     {
       completed: false,
-      createDate: "2022-06-18",
-      description: "upcoming",
-      dueDate: "2022-06-19",
-      tags: "work personal travel",
-      title: "task 4",
-      urgent: false
-    }
+      createDate: '2022-06-18',
+      description: 'upcoming',
+      dueDate: '2022-06-19',
+      tags: 'work personal travel',
+      title: 'task 4',
+      urgent: false,
+    },
   ];
 
-  function addTask(obj){
-    console.log(obj);
-    library.push(obj)
+  function addTask(obj) {
+    library.push(obj);
   }
 
-  function returnLib(){
-    console.log(library);
-    return library
-  } 
+  function returnLib() {
+    return library;
+  }
+
+  function removeAllTasks() {
+    const container = document.getElementById('tasks-container').childNodes;
+    const containerItems = container.length - 1;
+
+    for (let i = containerItems; i >= 0; i--) {
+      container[i].remove();
+    }
+  }
+
+  function refreshScreen(arr) {
+    removeAllTasks();
+
+    for (const item in arr) {
+      addTaskToDom(arr[item]);
+    }
+  }
 
   function filterSearchItems(item) {
     const currLib = returnLib();
-    let filtered = [];
-    if (item != ""){
-      for (let i=0; i<currLib.length; i++) {
-        for (let thing in currLib[i]){
+    const filtered = [];
+    if (item != '') {
+      for (let i = 0; i < currLib.length; i++) {
+        for (const thing in currLib[i]) {
           const currTask = currLib[i][thing];
-          if (typeof currTask != "boolean"){
-            if (currTask.includes(item)){
+          if (typeof currTask !== 'boolean') {
+            if (currTask.includes(item)) {
               filtered.push(currLib[i]);
             }
           }
@@ -84,36 +99,36 @@ const module = (() => {
     }
   }
 
-  function filterTodayItems(){
-    const filtered = library.filter(i => i.dueDate == getTodaysDate());
+  function filterTodayItems() {
+    const filtered = library.filter((i) => i.dueDate == getTodaysDate());
     refreshScreen(filtered);
   }
 
-  function filterUrgentItems(){
-    const filtered = library.filter(i => i.urgent === true);
+  function filterUrgentItems() {
+    const filtered = library.filter((i) => i.urgent === true);
     refreshScreen(filtered);
   }
 
-  function filterPersonalItems(){
-    const filtered = library.filter(i => i.tags.includes('personal'));
+  function filterPersonalItems() {
+    const filtered = library.filter((i) => i.tags.includes('personal'));
     refreshScreen(filtered);
   }
 
-  function filterWorkItems(){
-    const filtered = library.filter(i => i.tags.includes('work'));
+  function filterWorkItems() {
+    const filtered = library.filter((i) => i.tags.includes('work'));
     refreshScreen(filtered);
   }
 
-  function createFilter(tagName, tagSrc){
+  function createFilter(tagName, tagSrc) {
     const editedTagName = tagName.slice(4);
-    
+
     const newDiv = document.createElement('li');
     newDiv.classList.add('type-opt');
-    newDiv.id = `nav${editedTagName}`
+    newDiv.id = `nav${editedTagName}`;
 
     const iconSpan = document.createElement('span');
 
-    const iconPic = new Image (20, 20);
+    const iconPic = new Image(20, 20);
     iconPic.src = tagSrc;
     iconPic.classList.add('icon-white');
 
@@ -121,44 +136,26 @@ const module = (() => {
     titleSpan.classList.add('sort-title');
     titleSpan.innerHTML = editedTagName;
 
-    newDiv.addEventListener('click', e => {
-      const filtered = library.filter(i => i.tags.includes(editedTagName.toLowerCase()));
-      console.log(filtered);
+    newDiv.addEventListener('click', (e) => {
+      const filtered = library.filter((i) => i.tags.includes(editedTagName.toLowerCase()));
       refreshScreen(filtered);
-    })
+    });
 
     const delBtn = document.createElement('button');
     delBtn.classList.add('delete-task-tag');
-    delBtn.innerHTML = '-'
-    delBtn.addEventListener('click', e => {
-      refreshScreen(returnLib()); 
+    delBtn.innerHTML = '-';
+    delBtn.addEventListener('click', (e) => {
+      refreshScreen(returnLib());
       e.target.parentNode.remove();
       e.stopPropagation();
-    })
-
+    });
 
     iconSpan.append(iconPic);
     newDiv.append(iconSpan, titleSpan, delBtn);
     document.body.childNodes[0].childNodes[0].childNodes[2].appendChild(newDiv);
   }
 
-  function refreshScreen(arr){
-    removeAllTasks();
-    for (let item in arr) {
-      addTaskToDom(arr[item])
-    }
-  }
-
-  function removeAllTasks(){
-    let container = document.getElementById('tasks-container').childNodes;
-    let containerItems = container.length -1;
-
-    for (let i=containerItems; i>=0; i--) {
-      container[i].remove();
-    }
-  }
-
-  function addTaskToDom(task){
+  function addTaskToDom(task) {
     const parent = document.getElementById('tasks-container');
     parent.appendChild(displayTask(task));
   }
@@ -195,12 +192,12 @@ const module = (() => {
     date.contentEditable = 'true';
     date.innerHTML = obj.dueDate.slice(5);
 
-    //urgent: true
-    //red outline around completed button
+    // urgent: true
+    // red outline around completed button
     const bContain = document.createElement('label');
-    const bInput = document.createElement('div'); 
+    const bInput = document.createElement('div');
 
-    //urgent == true ? add special class
+    // urgent == true ? add special class
     if (obj.urgent == true) {
       bContain.classList.add('u-contain');
       bInput.classList.add('u-input');
@@ -209,93 +206,93 @@ const module = (() => {
       bInput.classList.add('b-input');
     }
 
-    //tags
+    // tags
     const tagSpan = document.createElement('span');
     tagSpan.classList.add('task-tag-span');
 
     if (obj.tags.includes('personal')) {
-      const anIcon = new Image (18, 18);
+      const anIcon = new Image(18, 18);
       anIcon.src = personalIconPic;
       anIcon.classList.add('task-tags');
       tagSpan.appendChild(anIcon);
     }
     if (obj.tags.includes('work')) {
-      const anIcon = new Image (18, 18);
+      const anIcon = new Image(18, 18);
       anIcon.src = workIconPic;
       anIcon.classList.add('task-tags');
       tagSpan.appendChild(anIcon);
     }
-    if (obj.tags.includes('travel')){
-      const anIcon = new Image (18, 18);
+    if (obj.tags.includes('travel')) {
+      const anIcon = new Image(18, 18);
       anIcon.src = travelPic;
       anIcon.classList.add('task-tags');
       tagSpan.appendChild(anIcon);
     }
-    if (obj.tags.includes('dining')){
-      const anIcon = new Image (18, 18);
+    if (obj.tags.includes('dining')) {
+      const anIcon = new Image(18, 18);
       anIcon.src = dinePic;
       anIcon.classList.add('task-tags');
       tagSpan.appendChild(anIcon);
     }
-    if (obj.tags.includes('birthdays')){
-      const anIcon = new Image (18, 18);
+    if (obj.tags.includes('birthdays')) {
+      const anIcon = new Image(18, 18);
       anIcon.src = cakePic;
       anIcon.classList.add('task-tags');
       tagSpan.appendChild(anIcon);
     }
-    if (obj.tags.includes('excercise')){
-      const anIcon = new Image (18, 18);
+    if (obj.tags.includes('excercise')) {
+      const anIcon = new Image(18, 18);
       anIcon.src = weightsPic;
       anIcon.classList.add('task-tags');
       tagSpan.appendChild(anIcon);
     }
-    if (obj.tags.includes('meetings')){
-      const anIcon = new Image (18, 18);
+    if (obj.tags.includes('meetings')) {
+      const anIcon = new Image(18, 18);
       anIcon.src = meetPic;
       anIcon.classList.add('task-tags');
       tagSpan.appendChild(anIcon);
     }
-    if (obj.tags.includes('favorites')){
-      const anIcon = new Image (18, 18);
+    if (obj.tags.includes('favorites')) {
+      const anIcon = new Image(18, 18);
       anIcon.src = starPic;
       anIcon.classList.add('task-tags');
       tagSpan.appendChild(anIcon);
     }
-    if (obj.tags.includes('campaigning')){
-      const anIcon = new Image (18, 18);
+    if (obj.tags.includes('campaigning')) {
+      const anIcon = new Image(18, 18);
       anIcon.src = megaphonePic;
       anIcon.classList.add('task-tags');
       tagSpan.appendChild(anIcon);
     }
-    if (obj.tags.includes('intramural')){
-      const anIcon = new Image (18, 18);
+    if (obj.tags.includes('intramural')) {
+      const anIcon = new Image(18, 18);
       anIcon.src = skatePic;
       anIcon.classList.add('task-tags');
       tagSpan.appendChild(anIcon);
     }
-    if (obj.tags.includes('drinks')){
-      const anIcon = new Image (18, 18);
+    if (obj.tags.includes('drinks')) {
+      const anIcon = new Image(18, 18);
       anIcon.src = beerPic;
       anIcon.classList.add('task-tags');
       tagSpan.appendChild(anIcon);
     }
 
-    //edit button
+    // edit button
     // const editBtn = document.createElement('span');
     // const editPic = new Image (20, 20);
     // editPic.src = pencilPic;
     // editPic.classList.add('icon-center');
 
-    //delete button
+    // delete button
     const delBtn = document.createElement('span');
     delBtn.classList.add('del-span');
-    const delPic = new Image (20, 20);
+    const delPic = new Image(20, 20);
     delPic.src = garbagePic;
     delPic.classList.add('icon-center');
-    delBtn.addEventListener('click', e => {
+    delBtn.addEventListener('click', (e) => {
       e.target.parentNode.parentNode.remove();
-    })
-    
+    });
+
     // editBtn.appendChild(editPic);
     delBtn.appendChild(delPic);
     bContain.append(complete, bInput);
@@ -305,9 +302,9 @@ const module = (() => {
       titleDescript,
       tagSpan,
       date,
-      delBtn
+      delBtn,
     );
-    return taskContainer
+    return taskContainer;
   }
 
   return {
@@ -320,8 +317,8 @@ const module = (() => {
     filterWorkItems,
     createFilter,
     refreshScreen,
-    addTaskToDom
-  }
+    addTaskToDom,
+  };
 })();
 
-export {module};
+export { module };

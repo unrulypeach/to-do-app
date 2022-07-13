@@ -1,4 +1,4 @@
-import { module } from "./modules";
+import { module } from './modules';
 import searchIconPic from './searchIcon.svg';
 import todayIconPic from './today.png';
 import upcomingIconPic from './upcoming.png';
@@ -25,14 +25,14 @@ export default function navbar() {
   const searchIcon = document.createElement('span');
   const sIcon = new Image(25, 25);
   sIcon.src = searchIconPic;
-  sIcon.id = 'search-icon'
+  sIcon.id = 'search-icon';
 
   const searchBar = document.createElement('input');
   searchBar.type = 'text';
-  searchBar.id = 'search-input'
-  searchBar.addEventListener('input', e => {
+  searchBar.id = 'search-input';
+  searchBar.addEventListener('input', (e) => {
     module.filterSearchItems(e.target.value);
-  })
+  });
 
   const sortSect = document.createElement('ul');
   sortSect.classList.add('side-bar');
@@ -47,13 +47,13 @@ export default function navbar() {
   todayHead.innerHTML = 'Today';
 
   const todayIcon = document.createElement('span');
-  const tIcon = new Image (25, 25);
+  const tIcon = new Image(25, 25);
   tIcon.src = todayIconPic;
   tIcon.id = 'today-icon';
 
   const upcoming = document.createElement('li');
   upcoming.classList.add('sort-opt');
-  upcoming.addEventListener('click', e => {
+  upcoming.addEventListener('click', (e) => {
     module.refreshScreen(module.returnLib());
   });
 
@@ -62,7 +62,7 @@ export default function navbar() {
   upcomingHead.innerHTML = 'Upcoming';
 
   const upcomingIcon = document.createElement('span');
-  const upIcon = new Image (25, 25);
+  const upIcon = new Image(25, 25);
   upIcon.src = upcomingIconPic;
   upIcon.id = 'upcoming-icon';
 
@@ -75,7 +75,7 @@ export default function navbar() {
   urgentHead.innerHTML = 'Urgent';
 
   const urgentIcon = document.createElement('span');
-  const uIcon = new Image (25, 25);
+  const uIcon = new Image(25, 25);
   uIcon.src = urgentIconPic;
   uIcon.id = 'urgent-icon';
 
@@ -86,13 +86,13 @@ export default function navbar() {
   const personal = document.createElement('li');
   personal.classList.add('type-opt');
   personal.addEventListener('click', module.filterPersonalItems);
-  
+
   const personalHead = document.createElement('span');
-  personalHead.classList.add('sort-title')
+  personalHead.classList.add('sort-title');
   personalHead.innerHTML = 'Personal';
 
   const personalIcon = document.createElement('span');
-  const pIcon = new Image (22, 22);
+  const pIcon = new Image(22, 22);
   pIcon.src = personalIconPic;
   pIcon.classList.add('icon-white');
 
@@ -101,15 +101,15 @@ export default function navbar() {
   work.addEventListener('click', module.filterWorkItems);
 
   const workHead = document.createElement('span');
-  workHead.classList.add('sort-title')
+  workHead.classList.add('sort-title');
   workHead.innerHTML = 'Work';
 
   const workIcon = document.createElement('span');
-  const wIcon = new Image (22, 22);
+  const wIcon = new Image(22, 22);
   wIcon.src = workIconPic;
   wIcon.classList.add('icon-white');
 
-  //dropdown
+  // dropdown
   const tagsDropdown = document.createElement('div');
   tagsDropdown.classList.add('dropdown', 'nav-drop');
 
@@ -120,113 +120,113 @@ export default function navbar() {
   const tagsList = document.createElement('div');
   tagsList.classList.add('dropdown-content');
 
-  //travel
+  // travel
   const tagTravel = document.createElement('a');
   tagTravel.href = '#';
-  const travelIcon = new Image (20, 20);
+  const travelIcon = new Image(20, 20);
   travelIcon.src = travelPic;
   travelIcon.classList.add('dropdown-icons');
   travelIcon.classList.add('unused');
   travelIcon.id = 'leftTravel';
-  travelIcon.addEventListener('click', e => {
+  travelIcon.addEventListener('click', (e) => {
     module.createFilter(e.target.id, e.target.src);
-  })
+  });
 
-  //dining
+  // dining
   const tagDine = document.createElement('a');
   tagDine.href = '#';
-  const dineIcon = new Image (20, 20);
+  const dineIcon = new Image(20, 20);
   dineIcon.src = dinePic;
   dineIcon.classList.add('dropdown-icons');
   dineIcon.classList.add('unused');
   dineIcon.id = 'leftDining';
-  dineIcon.addEventListener('click', e => {
+  dineIcon.addEventListener('click', (e) => {
     module.createFilter(e.target.id, e.target.src);
-  })
+  });
 
-  //cake
+  // cake
   const tagCake = document.createElement('a');
   tagCake.href = '#';
-  const cakeIcon = new Image (20, 20);
+  const cakeIcon = new Image(20, 20);
   cakeIcon.src = cakePic;
   cakeIcon.classList.add('dropdown-icons');
   cakeIcon.classList.add('unused');
   cakeIcon.id = 'leftBirthdays';
-  cakeIcon.addEventListener('click', e => {
+  cakeIcon.addEventListener('click', (e) => {
     module.createFilter(e.target.id, e.target.src);
-  })
+  });
 
-  //weights
+  // weights
   const tagWeight = document.createElement('a');
   tagWeight.href = '#';
-  const weightIcon = new Image (20, 20);
+  const weightIcon = new Image(20, 20);
   weightIcon.src = weightsPic;
   weightIcon.classList.add('dropdown-icons');
   weightIcon.classList.add('unused');
   weightIcon.id = 'leftExcercise';
-  weightIcon.addEventListener('click', e => {
+  weightIcon.addEventListener('click', (e) => {
     module.createFilter(e.target.id, e.target.src);
-  })
+  });
 
-  //meeting
+  // meeting
   const tagMeet = document.createElement('a');
   tagMeet.href = '#';
-  const meetIcon = new Image (20, 20);
+  const meetIcon = new Image(20, 20);
   meetIcon.src = meetPic;
   meetIcon.classList.add('dropdown-icons');
   meetIcon.classList.add('unused');
   meetIcon.id = 'leftMeetings';
-  meetIcon.addEventListener('click', e => {
+  meetIcon.addEventListener('click', (e) => {
     module.createFilter(e.target.id, e.target.src);
-  })
+  });
 
-  //star
+  // star
   const tagStar = document.createElement('a');
   tagStar.href = '#';
-  const starIcon = new Image (20, 20);
+  const starIcon = new Image(20, 20);
   starIcon.src = starPic;
   starIcon.classList.add('dropdown-icons');
   starIcon.classList.add('unused');
   starIcon.id = 'leftFavorites';
-  starIcon.addEventListener('click', e => {
+  starIcon.addEventListener('click', (e) => {
     module.createFilter(e.target.id, e.target.src);
-  })
+  });
 
-  //megaphone
+  // megaphone
   const tagMegafone = document.createElement('a');
   tagMegafone.href = '#';
-  const megafoneIcon = new Image (22, 22);
+  const megafoneIcon = new Image(22, 22);
   megafoneIcon.src = megaphonePic;
   megafoneIcon.classList.add('dropdown-icons');
   megafoneIcon.classList.add('unused');
   megafoneIcon.id = 'leftCampaigning';
-  megafoneIcon.addEventListener('click', e => {
+  megafoneIcon.addEventListener('click', (e) => {
     module.createFilter(e.target.id, e.target.src);
-  })
+  });
 
-  //skate
+  // skate
   const tagSkate = document.createElement('a');
   tagSkate.href = '#';
-  const skateIcon = new Image (20, 20);
+  const skateIcon = new Image(20, 20);
   skateIcon.src = skatePic;
   skateIcon.classList.add('dropdown-icons');
   skateIcon.classList.add('unused');
   skateIcon.id = 'leftIntramural';
-  skateIcon.addEventListener('click', e => {
+  skateIcon.addEventListener('click', (e) => {
     module.createFilter(e.target.id, e.target.src);
-  })
+  });
 
-  //beer
+  // beer
   const tagBeer = document.createElement('a');
   tagBeer.href = '#';
-  const beerIcon = new Image (20, 20);
+  const beerIcon = new Image(20, 20);
   beerIcon.src = beerPic;
   beerIcon.classList.add('dropdown-icons');
   beerIcon.classList.add('unused');
   beerIcon.id = 'leftDrinks';
-  beerIcon.addEventListener('click', e => {
+  beerIcon.addEventListener('click', (e) => {
     module.createFilter(e.target.id, e.target.src);
-  })
+  });
 
   tagTravel.appendChild(travelIcon);
   tagDine.appendChild(dineIcon);
@@ -247,12 +247,12 @@ export default function navbar() {
     tagStar,
     tagMegafone,
     tagSkate,
-    tagBeer
+    tagBeer,
   );
-  
+
   tagsDropdown.append(
     tagsBtn,
-    tagsList
+    tagsList,
   );
 
   searchIcon.appendChild(sIcon);
