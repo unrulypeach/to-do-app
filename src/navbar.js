@@ -1,19 +1,19 @@
 import { component } from './component';
-import searchIconPic from './searchIcon.svg';
-import todayIconPic from './today.png';
-import upcomingIconPic from './upcoming.png';
-import urgentIconPic from './urgent.png';
-import personalIconPic from './cottageFILL.svg';
-import workIconPic from './workFILL.svg';
-import travelPic from './luggageFILL.svg';
-import dinePic from './dineFILL.svg';
-import cakePic from './cakeFILL.svg';
-import weightsPic from './weightsFILL.svg';
-import meetPic from './meetingsFILL.svg';
-import starPic from './starFILL.svg';
-import megaphonePic from './megaphoneFILL.svg';
-import skatePic from './skateFILL.svg';
-import beerPic from './beerFILL.svg';
+import searchIconPic from './assets/searchIcon.svg';
+import todayIconPic from './assets/today.png';
+import upcomingIconPic from './assets/upcoming.png';
+import urgentIconPic from './assets/urgent.png';
+import personalIconPic from './assets/cottageFILL.svg';
+import workIconPic from './assets/workFILL.svg';
+import travelPic from './assets/luggageFILL.svg';
+import dinePic from './assets/dineFILL.svg';
+import cakePic from './assets/cakeFILL.svg';
+import weightsPic from './assets/weightsFILL.svg';
+import meetPic from './assets/meetingsFILL.svg';
+import starPic from './assets/starFILL.svg';
+import megaphonePic from './assets/megaphoneFILL.svg';
+import skatePic from './assets/skateFILL.svg';
+import beerPic from './assets/beerFILL.svg';
 
 export default function navbar() {
   const div = document.createElement('div');

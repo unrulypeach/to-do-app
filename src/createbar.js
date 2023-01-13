@@ -1,17 +1,17 @@
+import selectTag from './selectTag';
 import { getTodaysDate, getInputValues, newTask } from './task';
 import { component } from './component';
-import selectTag from './selectTag';
-import personalIconPic from './cottageFILL.svg';
-import workIconPic from './workFILL.svg';
-import travelPic from './luggageFILL.svg';
-import dinePic from './dineFILL.svg';
-import cakePic from './cakeFILL.svg';
-import weightsPic from './weightsFILL.svg';
-import meetPic from './meetingsFILL.svg';
-import starPic from './starFILL.svg';
-import megaphonePic from './megaphoneFILL.svg';
-import skatePic from './skateFILL.svg';
-import beerPic from './beerFILL.svg';
+import personalIconPic from './assets/cottageFILL.svg';
+import workIconPic from './assets/workFILL.svg';
+import travelPic from './assets/luggageFILL.svg';
+import dinePic from './assets/dineFILL.svg';
+import cakePic from './assets/cakeFILL.svg';
+import weightsPic from './assets/weightsFILL.svg';
+import meetPic from './assets/meetingsFILL.svg';
+import starPic from './assets/starFILL.svg';
+import megaphonePic from './assets/megaphoneFILL.svg';
+import skatePic from './assets/skateFILL.svg';
+import beerPic from './assets/beerFILL.svg';
 
 function createbar() {
   const div = document.createElement('div');
