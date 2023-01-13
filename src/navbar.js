@@ -1,4 +1,4 @@
-import { module } from './modules';
+import { component } from './component';
 import searchIconPic from './searchIcon.svg';
 import todayIconPic from './today.png';
 import upcomingIconPic from './upcoming.png';
@@ -31,7 +31,7 @@ export default function navbar() {
   searchBar.type = 'text';
   searchBar.id = 'search-input';
   searchBar.addEventListener('input', (e) => {
-    module.filterSearchItems(e.target.value);
+    component.filterSearchItems(e.target.value);
   });
 
   const sortSect = document.createElement('ul');
@@ -40,7 +40,7 @@ export default function navbar() {
 
   const today = document.createElement('li');
   today.classList.add('sort-opt');
-  today.addEventListener('click', module.filterTodayItems);
+  today.addEventListener('click', component.filterTodayItems);
 
   const todayHead = document.createElement('span');
   todayHead.classList.add('sort-title');
@@ -54,7 +54,7 @@ export default function navbar() {
   const upcoming = document.createElement('li');
   upcoming.classList.add('sort-opt');
   upcoming.addEventListener('click', (e) => {
-    module.refreshScreen(module.returnLib());
+    component.refreshScreen(component.returnLib());
   });
 
   const upcomingHead = document.createElement('span');
@@ -68,7 +68,7 @@ export default function navbar() {
 
   const urgent = document.createElement('li');
   urgent.classList.add('sort-opt');
-  urgent.addEventListener('click', module.filterUrgentItems);
+  urgent.addEventListener('click', component.filterUrgentItems);
 
   const urgentHead = document.createElement('span');
   urgentHead.classList.add('sort-title');
@@ -85,7 +85,7 @@ export default function navbar() {
 
   const personal = document.createElement('li');
   personal.classList.add('type-opt');
-  personal.addEventListener('click', module.filterPersonalItems);
+  personal.addEventListener('click', component.filterPersonalItems);
 
   const personalHead = document.createElement('span');
   personalHead.classList.add('sort-title');
@@ -98,7 +98,7 @@ export default function navbar() {
 
   const work = document.createElement('li');
   work.classList.add('type-opt');
-  work.addEventListener('click', module.filterWorkItems);
+  work.addEventListener('click', component.filterWorkItems);
 
   const workHead = document.createElement('span');
   workHead.classList.add('sort-title');
@@ -129,7 +129,7 @@ export default function navbar() {
   travelIcon.classList.add('unused');
   travelIcon.id = 'leftTravel';
   travelIcon.addEventListener('click', (e) => {
-    module.createFilter(e.target.id, e.target.src);
+    component.createFilter(e.target.id, e.target.src);
   });
 
   // dining
@@ -141,7 +141,7 @@ export default function navbar() {
   dineIcon.classList.add('unused');
   dineIcon.id = 'leftDining';
   dineIcon.addEventListener('click', (e) => {
-    module.createFilter(e.target.id, e.target.src);
+    component.createFilter(e.target.id, e.target.src);
   });
 
   // cake
@@ -153,7 +153,7 @@ export default function navbar() {
   cakeIcon.classList.add('unused');
   cakeIcon.id = 'leftBirthdays';
   cakeIcon.addEventListener('click', (e) => {
-    module.createFilter(e.target.id, e.target.src);
+    component.createFilter(e.target.id, e.target.src);
   });
 
   // weights
@@ -165,7 +165,7 @@ export default function navbar() {
   weightIcon.classList.add('unused');
   weightIcon.id = 'leftExcercise';
   weightIcon.addEventListener('click', (e) => {
-    module.createFilter(e.target.id, e.target.src);
+    component.createFilter(e.target.id, e.target.src);
   });
 
   // meeting
@@ -177,7 +177,7 @@ export default function navbar() {
   meetIcon.classList.add('unused');
   meetIcon.id = 'leftMeetings';
   meetIcon.addEventListener('click', (e) => {
-    module.createFilter(e.target.id, e.target.src);
+    component.createFilter(e.target.id, e.target.src);
   });
 
   // star
@@ -189,7 +189,7 @@ export default function navbar() {
   starIcon.classList.add('unused');
   starIcon.id = 'leftFavorites';
   starIcon.addEventListener('click', (e) => {
-    module.createFilter(e.target.id, e.target.src);
+    component.createFilter(e.target.id, e.target.src);
   });
 
   // megaphone
@@ -201,7 +201,7 @@ export default function navbar() {
   megafoneIcon.classList.add('unused');
   megafoneIcon.id = 'leftCampaigning';
   megafoneIcon.addEventListener('click', (e) => {
-    module.createFilter(e.target.id, e.target.src);
+    component.createFilter(e.target.id, e.target.src);
   });
 
   // skate
@@ -213,7 +213,7 @@ export default function navbar() {
   skateIcon.classList.add('unused');
   skateIcon.id = 'leftIntramural';
   skateIcon.addEventListener('click', (e) => {
-    module.createFilter(e.target.id, e.target.src);
+    component.createFilter(e.target.id, e.target.src);
   });
 
   // beer
@@ -225,7 +225,7 @@ export default function navbar() {
   beerIcon.classList.add('unused');
   beerIcon.id = 'leftDrinks';
   beerIcon.addEventListener('click', (e) => {
-    module.createFilter(e.target.id, e.target.src);
+    component.createFilter(e.target.id, e.target.src);
   });
 
   tagTravel.appendChild(travelIcon);

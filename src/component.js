@@ -1,7 +1,6 @@
-import { compareAsc, format } from 'date-fns';
+// import { compareAsc, format } from 'date-fns';
 import { getTodaysDate } from './task';
 import garbagePic from './garbage0.svg';
-import pencilPic from './edit0.svg';
 import personalIconPic from './cottageFILL.svg';
 import workIconPic from './workFILL.svg';
 import travelPic from './luggageFILL.svg';
@@ -14,7 +13,7 @@ import megaphonePic from './megaphoneFILL.svg';
 import skatePic from './skateFILL.svg';
 import beerPic from './beerFILL.svg';
 
-const module = (() => {
+const component = (() => {
   const library = [
     {
       completed: false,
@@ -66,98 +65,18 @@ const module = (() => {
     const container = document.getElementById('tasks-container').childNodes;
     const containerItems = container.length - 1;
 
-    for (let i = containerItems; i >= 0; i--) {
+    for (let i = containerItems; i >= 0; i -= 1) {
       container[i].remove();
     }
   }
 
-  function refreshScreen(arr) {
-    removeAllTasks();
+  function deleteTask(title, descript) {
+    // find obj in librar, return ind
+    const ind = library.findIndex((elem) => elem.title === title && elem.description === descript);
+    // remove library.ind
+    library.splice(ind, 1);
 
-    for (const item in arr) {
-      addTaskToDom(arr[item]);
-    }
-  }
-
-  function filterSearchItems(item) {
-    const currLib = returnLib();
-    const filtered = [];
-    if (item != '') {
-      for (let i = 0; i < currLib.length; i++) {
-        for (const thing in currLib[i]) {
-          const currTask = currLib[i][thing];
-          if (typeof currTask !== 'boolean') {
-            if (currTask.includes(item)) {
-              filtered.push(currLib[i]);
-            }
-          }
-        }
-      }
-      refreshScreen(filtered);
-    } else {
-      refreshScreen(currLib);
-    }
-  }
-
-  function filterTodayItems() {
-    const filtered = library.filter((i) => i.dueDate == getTodaysDate());
-    refreshScreen(filtered);
-  }
-
-  function filterUrgentItems() {
-    const filtered = library.filter((i) => i.urgent === true);
-    refreshScreen(filtered);
-  }
-
-  function filterPersonalItems() {
-    const filtered = library.filter((i) => i.tags.includes('personal'));
-    refreshScreen(filtered);
-  }
-
-  function filterWorkItems() {
-    const filtered = library.filter((i) => i.tags.includes('work'));
-    refreshScreen(filtered);
-  }
-
-  function createFilter(tagName, tagSrc) {
-    const editedTagName = tagName.slice(4);
-
-    const newDiv = document.createElement('li');
-    newDiv.classList.add('type-opt');
-    newDiv.id = `nav${editedTagName}`;
-
-    const iconSpan = document.createElement('span');
-
-    const iconPic = new Image(20, 20);
-    iconPic.src = tagSrc;
-    iconPic.classList.add('icon-white');
-
-    const titleSpan = document.createElement('span');
-    titleSpan.classList.add('sort-title');
-    titleSpan.innerHTML = editedTagName;
-
-    newDiv.addEventListener('click', (e) => {
-      const filtered = library.filter((i) => i.tags.includes(editedTagName.toLowerCase()));
-      refreshScreen(filtered);
-    });
-
-    const delBtn = document.createElement('button');
-    delBtn.classList.add('delete-task-tag');
-    delBtn.innerHTML = '-';
-    delBtn.addEventListener('click', (e) => {
-      refreshScreen(returnLib());
-      e.target.parentNode.remove();
-      e.stopPropagation();
-    });
-
-    iconSpan.append(iconPic);
-    newDiv.append(iconSpan, titleSpan, delBtn);
-    document.body.childNodes[0].childNodes[0].childNodes[2].appendChild(newDiv);
-  }
-
-  function addTaskToDom(task) {
-    const parent = document.getElementById('tasks-container');
-    parent.appendChild(displayTask(task));
+    console.log(library, ind);
   }
 
   function displayTask(obj) {
@@ -167,21 +86,19 @@ const module = (() => {
     const titleDescript = document.createElement('div');
     titleDescript.classList.add('task-center-container');
 
-    const timeContainer = document.createElement('div');
-
-    // title: "pee"
+    // title
     const title = document.createElement('h1');
     title.classList.add('task-title');
     title.contentEditable = 'true';
     title.innerHTML = obj.title;
 
-    // description: "go piss girl"
+    // description
     const descript = document.createElement('p');
     descript.classList.add('task-descript');
     descript.contentEditable = 'true';
     descript.innerHTML = obj.description;
 
-    // completeted: false
+    // completeted: bool
     const complete = document.createElement('input');
     complete.classList.add('task-progress');
     complete.type = 'checkbox';
@@ -198,7 +115,7 @@ const module = (() => {
     const bInput = document.createElement('div');
 
     // urgent == true ? add special class
-    if (obj.urgent == true) {
+    if (obj.urgent === true) {
       bContain.classList.add('u-contain');
       bInput.classList.add('u-input');
     } else {
@@ -290,7 +207,13 @@ const module = (() => {
     delPic.src = garbagePic;
     delPic.classList.add('icon-center');
     delBtn.addEventListener('click', (e) => {
+      // visual removal (but can change to refreshScreen after item removed from lib)
       e.target.parentNode.parentNode.remove();
+
+      // remove from library
+      const taskTitle = e.target.parentNode.parentNode.childNodes[1].childNodes[0].innerText;
+      const taskDescript = e.target.parentNode.parentNode.childNodes[1].childNodes[1].innerText;
+      deleteTask(taskTitle, taskDescript);
     });
 
     // editBtn.appendChild(editPic);
@@ -307,6 +230,96 @@ const module = (() => {
     return taskContainer;
   }
 
+  function addTaskToDom(task) {
+    const parent = document.getElementById('tasks-container');
+    parent.appendChild(displayTask(task));
+  }
+
+  function refreshScreen(arr) {
+    removeAllTasks();
+
+    arr.forEach((elem) => {
+      addTaskToDom(elem);
+    });
+  }
+
+  function filterSearchItems(item) {
+    const currLib = returnLib();
+    const filtered = [];
+    if (item !== '') {
+      for (let i = 0; i < currLib.length; i += 1) {
+        // eslint-disable-next-line no-restricted-syntax, guard-for-in
+        for (const thing in currLib[i]) {
+          const currTask = currLib[i][thing];
+          if (typeof currTask !== 'boolean') {
+            if (currTask.includes(item)) {
+              filtered.push(currLib[i]);
+            }
+          }
+        }
+      }
+      refreshScreen(filtered);
+    } else {
+      refreshScreen(currLib);
+    }
+  }
+
+  function filterTodayItems() {
+    const filtered = library.filter((i) => i.dueDate === getTodaysDate());
+    refreshScreen(filtered);
+  }
+
+  function filterUrgentItems() {
+    const filtered = library.filter((i) => i.urgent === true);
+    refreshScreen(filtered);
+  }
+
+  function filterPersonalItems() {
+    const filtered = library.filter((i) => i.tags.includes('personal'));
+    refreshScreen(filtered);
+  }
+
+  function filterWorkItems() {
+    const filtered = library.filter((i) => i.tags.includes('work'));
+    refreshScreen(filtered);
+  }
+
+  function createFilter(tagName, tagSrc) {
+    const editedTagName = tagName.slice(4);
+
+    const newDiv = document.createElement('li');
+    newDiv.classList.add('type-opt');
+    newDiv.id = `nav${editedTagName}`;
+
+    const iconSpan = document.createElement('span');
+
+    const iconPic = new Image(20, 20);
+    iconPic.src = tagSrc;
+    iconPic.classList.add('icon-white');
+
+    const titleSpan = document.createElement('span');
+    titleSpan.classList.add('sort-title');
+    titleSpan.innerHTML = editedTagName;
+
+    newDiv.addEventListener('click', () => {
+      const filtered = library.filter((i) => i.tags.includes(editedTagName.toLowerCase()));
+      refreshScreen(filtered);
+    });
+
+    const delBtn = document.createElement('button');
+    delBtn.classList.add('delete-task-tag');
+    delBtn.innerHTML = '-';
+    delBtn.addEventListener('click', (e) => {
+      refreshScreen(returnLib());
+      e.target.parentNode.remove();
+      e.stopPropagation();
+    });
+
+    iconSpan.append(iconPic);
+    newDiv.append(iconSpan, titleSpan, delBtn);
+    document.body.childNodes[0].childNodes[0].childNodes[2].appendChild(newDiv);
+  }
+
   return {
     addTask,
     returnLib,
@@ -321,4 +334,4 @@ const module = (() => {
   };
 })();
 
-export { module };
+export { component };

@@ -2,14 +2,14 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: {
     index: './src/index.js',
     navbar: './src/navbar.js',
     task: './src/task.js',
     event: './src/event.js',
     create: './src/createbar.js',
-    modules: './src/modules.js',
+    component: './src/component.js',
     createpg: './src/createPage.js',
     tagsfns: './src/selectTag.js',
   },

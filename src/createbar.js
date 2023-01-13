@@ -1,6 +1,5 @@
-import {format, add} from 'date-fns';
 import { getTodaysDate, getInputValues, newTask } from './task';
-import { module } from './modules';
+import { component } from './component';
 import selectTag from './selectTag';
 import personalIconPic from './cottageFILL.svg';
 import workIconPic from './workFILL.svg';
@@ -14,16 +13,16 @@ import megaphonePic from './megaphoneFILL.svg';
 import skatePic from './skateFILL.svg';
 import beerPic from './beerFILL.svg';
 
-function createbar () {
+function createbar() {
   const div = document.createElement('div');
   div.classList.add('create-bar-container');
 
   const closeBar = document.createElement('button');
   closeBar.classList.add('close-create-bar');
   closeBar.innerHTML = 'X';
-  closeBar.addEventListener('click', e => {
+  closeBar.addEventListener('click', (e) => {
     e.target.parentNode.parentNode.classList.toggle('hide');
-  })
+  });
 
   const createTask = document.createElement('div');
   createTask.classList.add('create-opt');
@@ -31,36 +30,36 @@ function createbar () {
   const createTaskTitle = document.createElement('h1');
   createTaskTitle.classList.add('create-bar-subhead');
   createTaskTitle.innerHTML = 'Create A Task';
-  
+
   const taskForm = document.createElement('form');
-  taskForm.id = 'create-form';;
-  
-  //title
+  taskForm.id = 'create-form';
+
+  // title
   const taskTitle = document.createElement('input');
   taskTitle.classList.add('task-input');
   taskTitle.id = 'task-title';
   taskTitle.type = 'text';
   taskTitle.placeholder = 'Name';
 
-  //description
+  // description
   const taskDescript = document.createElement('textarea');
   taskDescript.classList.add('task-input');
   taskDescript.id = 'task-descript';
   taskDescript.placeholder = 'Description..';
-  
-  //date
+
+  // date
   const taskDate = document.createElement('input');
-  taskDate.classList.add('task-input')
+  taskDate.classList.add('task-input');
   taskDate.type = 'date';
   taskDate.value = getTodaysDate();
 
-  //urgent
+  // urgent
   const taskUrgentLabel = document.createElement('label');
   taskUrgentLabel.classList.add('control-checkbox');
-  taskUrgentLabel.classList.add('control')
+  taskUrgentLabel.classList.add('control');
 
   const tUrgentTitle = document.createElement('span');
-  tUrgentTitle.innerHTML = 'Urgent?'
+  tUrgentTitle.innerHTML = 'Urgent?';
 
   const taskUrgent = document.createElement('input');
   taskUrgent.classList.add('task-input');
@@ -69,33 +68,33 @@ function createbar () {
   const myCheck = document.createElement('div');
   myCheck.classList.add('control_indicator');
 
-  //tags
+  // tags
   const tagsContainer = document.createElement('div');
   tagsContainer.classList.add('tags-container');
 
-  //personal
+  // personal
   const personalTag = document.createElement('a');
-  const pIcon = new Image (22, 22);
+  const pIcon = new Image(22, 22);
   pIcon.src = personalIconPic;
   pIcon.classList.add('icon-purple');
   pIcon.classList.add('unused');
   pIcon.id = 'personal';
-  personalTag.addEventListener('click', e => {
+  personalTag.addEventListener('click', (e) => {
     selectTag(e);
-  })
+  });
 
-  //work
+  // work
   const workTag = document.createElement('a');
-  const wIcon = new Image (22, 22);
+  const wIcon = new Image(22, 22);
   wIcon.src = workIconPic;
   wIcon.classList.add('icon-purple');
   wIcon.classList.add('unused');
   wIcon.id = 'work';
-  workTag.addEventListener('click', e => {
+  workTag.addEventListener('click', (e) => {
     selectTag(e);
-  })
+  });
 
-  //dropdown
+  // dropdown
   const tagsDropdown = document.createElement('div');
   tagsDropdown.classList.add('dropdown');
 
@@ -106,126 +105,126 @@ function createbar () {
   const tagsList = document.createElement('div');
   tagsList.classList.add('dropdown-content');
 
-  //travel
+  // travel
   const tagTravel = document.createElement('a');
   tagTravel.href = '#';
-  const travelIcon = new Image (20, 20);
+  const travelIcon = new Image(20, 20);
   travelIcon.src = travelPic;
   travelIcon.classList.add('dropdown-icons');
   travelIcon.classList.add('unused');
   travelIcon.id = 'travel';
-  tagTravel.addEventListener('click', e => {
+  tagTravel.addEventListener('click', (e) => {
     selectTag(e);
-  })
+  });
 
-  //dining
+  // dining
   const tagDine = document.createElement('a');
   tagDine.href = '#';
-  const dineIcon = new Image (20, 20);
+  const dineIcon = new Image(20, 20);
   dineIcon.src = dinePic;
   dineIcon.classList.add('dropdown-icons');
   dineIcon.classList.add('unused');
   dineIcon.id = 'dining';
-  tagDine.addEventListener('click', e => {
+  tagDine.addEventListener('click', (e) => {
     selectTag(e);
-  })
+  });
 
-  //cake
+  // cake
   const tagCake = document.createElement('a');
   tagCake.href = '#';
-  const cakeIcon = new Image (20, 20);
+  const cakeIcon = new Image(20, 20);
   cakeIcon.src = cakePic;
   cakeIcon.classList.add('dropdown-icons');
   cakeIcon.classList.add('unused');
   cakeIcon.id = 'birthdays';
-  tagCake.addEventListener('click', e => {
+  tagCake.addEventListener('click', (e) => {
     selectTag(e);
-  })
+  });
 
-  //weights
+  // weights
   const tagWeight = document.createElement('a');
   tagWeight.href = '#';
-  const weightIcon = new Image (20, 20);
+  const weightIcon = new Image(20, 20);
   weightIcon.src = weightsPic;
   weightIcon.classList.add('dropdown-icons');
   weightIcon.classList.add('unused');
   weightIcon.id = 'excercise';
-  tagWeight.addEventListener('click', e => {
+  tagWeight.addEventListener('click', (e) => {
     selectTag(e);
-  })
+  });
 
-  //meeting
+  // meeting
   const tagMeet = document.createElement('a');
   tagMeet.href = '#';
-  const meetIcon = new Image (20, 20);
+  const meetIcon = new Image(20, 20);
   meetIcon.src = meetPic;
   meetIcon.classList.add('dropdown-icons');
   meetIcon.classList.add('unused');
   meetIcon.id = 'meetings';
-  tagMeet.addEventListener('click', e => {
+  tagMeet.addEventListener('click', (e) => {
     selectTag(e);
-  })
+  });
 
-  //star
+  // star
   const tagStar = document.createElement('a');
   tagStar.href = '#';
-  const starIcon = new Image (20, 20);
+  const starIcon = new Image(20, 20);
   starIcon.src = starPic;
   starIcon.classList.add('dropdown-icons');
   starIcon.classList.add('unused');
   starIcon.id = 'favorites';
-  tagStar.addEventListener('click', e => {
+  tagStar.addEventListener('click', (e) => {
     selectTag(e);
-  })
+  });
 
-  //megaphone
+  // megaphone
   const tagMegafone = document.createElement('a');
   tagMegafone.href = '#';
-  const megafoneIcon = new Image (22, 22);
+  const megafoneIcon = new Image(22, 22);
   megafoneIcon.src = megaphonePic;
   megafoneIcon.classList.add('dropdown-icons');
   megafoneIcon.classList.add('unused');
   megafoneIcon.id = 'campaigning';
-  tagMegafone.addEventListener('click', e => {
+  tagMegafone.addEventListener('click', (e) => {
     selectTag(e);
-  })
+  });
 
-  //skate
+  // skate
   const tagSkate = document.createElement('a');
   tagSkate.href = '#';
-  const skateIcon = new Image (20, 20);
+  const skateIcon = new Image(20, 20);
   skateIcon.src = skatePic;
   skateIcon.classList.add('dropdown-icons');
   skateIcon.classList.add('unused');
   skateIcon.id = 'intramural';
-  tagSkate.addEventListener('click', e => {
+  tagSkate.addEventListener('click', (e) => {
     selectTag(e);
-  })
+  });
 
-  //beer
+  // beer
   const tagBeer = document.createElement('a');
   tagBeer.href = '#';
-  const beerIcon = new Image (20, 20);
+  const beerIcon = new Image(20, 20);
   beerIcon.src = beerPic;
   beerIcon.classList.add('dropdown-icons');
   beerIcon.classList.add('unused');
   beerIcon.id = 'drinks';
-  tagBeer.addEventListener('click', e => {
+  tagBeer.addEventListener('click', (e) => {
     selectTag(e);
-  })
+  });
 
   const taskBtn = document.createElement('button');
   taskBtn.classList.add('submit-button');
   taskBtn.type = 'button';
   taskBtn.innerHTML = 'create task';
-  taskBtn.addEventListener('click', e => {
+  taskBtn.addEventListener('click', (e) => {
     const task = newTask(getInputValues());
-    module.addTask(task);
-    module.addTaskToDom(task);
-    module.returnLib();
+    component.addTask(task);
+    component.addTaskToDom(task);
+    component.returnLib();
   });
 
-  //appending
+  // appending
 
   const taskBtmRow = document.createElement('div');
   taskBtmRow.classList.add('form-lastrow');
@@ -254,56 +253,56 @@ function createbar () {
     tagStar,
     tagMegafone,
     tagSkate,
-    tagBeer
+    tagBeer,
   );
 
   tagsDropdown.append(
     tagsBtn,
-    tagsList
+    tagsList,
   );
-  
+
   actualTagContain.append(
     personalTag,
     workTag,
-    tagsDropdown
-  )
+    tagsDropdown,
+  );
 
   tagsContainer.append(
     actualTagContain,
-    taskBtn
+    taskBtn,
   );
 
   taskUrgentLabel.append(
     tUrgentTitle,
     taskUrgent,
-    myCheck
+    myCheck,
   );
 
   taskBtmRow.append(
     taskDate,
-    taskUrgentLabel
+    taskUrgentLabel,
   );
 
   taskForm.append(
     taskTitle,
     taskDescript,
     taskBtmRow,
-    tagsContainer
+    tagsContainer,
   );
-  
+
   createTask.append(
     createTaskTitle,
     closeBar,
-    taskForm
-  
+    taskForm,
+
   );
-  
+
   div.append(createTask);
   return div;
 }
 
-function addIconToTask (obj) {
-  
+function addIconToTask(obj) {
+
 }
 
-export {createbar}
+export { createbar };
