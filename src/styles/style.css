@@ -4,31 +4,31 @@
 }
 @font-face {
   font-family: 'Barlow';
-  src: url('./fonts/Barlow-Regular.ttf');
+  src: url('../fonts/Barlow-Regular.ttf');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Barlow';
-  src: url('./fonts/Barlow-Light.ttf');
+  src: url('../fonts/Barlow-Light.ttf');
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: 'Barlow';
-  src: url('./fonts/Barlow-ExtraLight.ttf');
+  src: url('../fonts/Barlow-ExtraLight.ttf');
   font-weight: 200;
   font-style: normal;
 }
 @font-face {
   font-family: 'Barlow';
-  src: url('./fonts/Barlow-Medium.ttf');
+  src: url('../fonts/Barlow-Medium.ttf');
   font-weight: 500;
   font-style: normal;
 }
 @font-face {
   font-family: 'Barlow';
-  src: url('./fonts/Barlow-SemiBold.ttf');
+  src: url('../fonts/Barlow-SemiBold.ttf');
   font-weight: 600;
   font-style: normal;
 }
@@ -45,9 +45,35 @@
   height: 100vh;
 }
 .mid-container{
+  overflow: scroll;
   flex-grow: 3;
 }
 /* LEFT NAV DIV*/
+.userId-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 21px;
+}
+#userName {
+  font-size: 21px;
+}
+#userPic {
+  position: relative;
+  display: inline-block;
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  background-size: 40px;
+  border-radius: 20px;
+}
+#sign-in, #sign-out {
+  background-color: var(--sand);
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+}
+
 .search-label > span {
   position: relative;
   top: 27px;
@@ -248,6 +274,9 @@ a.used{
   display: flex;
 
   border-bottom: solid 1px gainsboro;
+}
+.task-complete {
+  opacity: 0.5;
 }
 .u-contain, .b-contain {
   margin-left: 3px;

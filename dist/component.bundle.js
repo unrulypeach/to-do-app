@@ -345,7 +345,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./task */ \"./src/task.js\");\n/* harmony import */ var _garbage0_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./garbage0.svg */ \"./src/garbage0.svg\");\n/* harmony import */ var _cottageFILL_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cottageFILL.svg */ \"./src/cottageFILL.svg\");\n/* harmony import */ var _workFILL_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./workFILL.svg */ \"./src/workFILL.svg\");\n/* harmony import */ var _luggageFILL_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./luggageFILL.svg */ \"./src/luggageFILL.svg\");\n/* harmony import */ var _dineFILL_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./dineFILL.svg */ \"./src/dineFILL.svg\");\n/* harmony import */ var _cakeFILL_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./cakeFILL.svg */ \"./src/cakeFILL.svg\");\n/* harmony import */ var _weightsFILL_svg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./weightsFILL.svg */ \"./src/weightsFILL.svg\");\n/* harmony import */ var _meetingsFILL_svg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./meetingsFILL.svg */ \"./src/meetingsFILL.svg\");\n/* harmony import */ var _starFILL_svg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./starFILL.svg */ \"./src/starFILL.svg\");\n/* harmony import */ var _megaphoneFILL_svg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./megaphoneFILL.svg */ \"./src/megaphoneFILL.svg\");\n/* harmony import */ var _skateFILL_svg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./skateFILL.svg */ \"./src/skateFILL.svg\");\n/* harmony import */ var _beerFILL_svg__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./beerFILL.svg */ \"./src/beerFILL.svg\");\n// import { compareAsc, format } from 'date-fns';\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nconst component = (() => {\n  const library = [\n    {\n      completed: false,\n      createDate: '2022-06-18',\n      description: 'today, upcoming, urgent',\n      dueDate: '2022-06-18',\n      tags: 'personal work',\n      title: 'task 1',\n      urgent: true,\n    },\n    {\n      completed: false,\n      createDate: '2022-06-18',\n      description: 'today, upcoming',\n      dueDate: '2022-06-18',\n      tags: 'personal',\n      title: 'task 2',\n      urgent: false,\n    },\n    {\n      completed: false,\n      createDate: '2022-06-18',\n      description: 'upcoming, urgent',\n      dueDate: '2022-06-19',\n      tags: 'work',\n      title: 'task 3',\n      urgent: true,\n    },\n    {\n      completed: false,\n      createDate: '2022-06-18',\n      description: 'upcoming',\n      dueDate: '2022-06-19',\n      tags: 'work personal travel',\n      title: 'task 4',\n      urgent: false,\n    },\n  ];\n\n  function addTask(obj) {\n    library.push(obj);\n  }\n\n  function returnLib() {\n    return library;\n  }\n\n  function removeAllTasks() {\n    const container = document.getElementById('tasks-container').childNodes;\n    const containerItems = container.length - 1;\n\n    for (let i = containerItems; i >= 0; i -= 1) {\n      container[i].remove();\n    }\n  }\n\n  function displayTask(obj) {\n    const taskContainer = document.createElement('div');\n    taskContainer.classList.add('task-container');\n\n    const titleDescript = document.createElement('div');\n    titleDescript.classList.add('task-center-container');\n\n    // title: \"pee\"\n    const title = document.createElement('h1');\n    title.classList.add('task-title');\n    title.contentEditable = 'true';\n    title.innerHTML = obj.title;\n\n    // description: \"go piss girl\"\n    const descript = document.createElement('p');\n    descript.classList.add('task-descript');\n    descript.contentEditable = 'true';\n    descript.innerHTML = obj.description;\n\n    // completeted: false\n    const complete = document.createElement('input');\n    complete.classList.add('task-progress');\n    complete.type = 'checkbox';\n\n    // dueDate: \"2022-06-14\"\n    const date = document.createElement('p');\n    date.classList.add('task-date');\n    date.contentEditable = 'true';\n    date.innerHTML = obj.dueDate.slice(5);\n\n    // urgent: true\n    // red outline around completed button\n    const bContain = document.createElement('label');\n    const bInput = document.createElement('div');\n\n    // urgent == true ? add special class\n    if (obj.urgent === true) {\n      bContain.classList.add('u-contain');\n      bInput.classList.add('u-input');\n    } else {\n      bContain.classList.add('b-contain');\n      bInput.classList.add('b-input');\n    }\n\n    // tags\n    const tagSpan = document.createElement('span');\n    tagSpan.classList.add('task-tag-span');\n\n    if (obj.tags.includes('personal')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _cottageFILL_svg__WEBPACK_IMPORTED_MODULE_2__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('work')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _workFILL_svg__WEBPACK_IMPORTED_MODULE_3__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('travel')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _luggageFILL_svg__WEBPACK_IMPORTED_MODULE_4__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('dining')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _dineFILL_svg__WEBPACK_IMPORTED_MODULE_5__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('birthdays')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _cakeFILL_svg__WEBPACK_IMPORTED_MODULE_6__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('excercise')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _weightsFILL_svg__WEBPACK_IMPORTED_MODULE_7__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('meetings')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _meetingsFILL_svg__WEBPACK_IMPORTED_MODULE_8__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('favorites')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _starFILL_svg__WEBPACK_IMPORTED_MODULE_9__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('campaigning')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _megaphoneFILL_svg__WEBPACK_IMPORTED_MODULE_10__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('intramural')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _skateFILL_svg__WEBPACK_IMPORTED_MODULE_11__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('drinks')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _beerFILL_svg__WEBPACK_IMPORTED_MODULE_12__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n\n    // edit button\n    // const editBtn = document.createElement('span');\n    // const editPic = new Image (20, 20);\n    // editPic.src = pencilPic;\n    // editPic.classList.add('icon-center');\n\n    // delete button\n    const delBtn = document.createElement('span');\n    delBtn.classList.add('del-span');\n    const delPic = new Image(20, 20);\n    delPic.src = _garbage0_svg__WEBPACK_IMPORTED_MODULE_1__;\n    delPic.classList.add('icon-center');\n    delBtn.addEventListener('click', (e) => {\n      e.target.parentNode.parentNode.remove();\n    });\n\n    // editBtn.appendChild(editPic);\n    delBtn.appendChild(delPic);\n    bContain.append(complete, bInput);\n    titleDescript.append(title, descript);\n    taskContainer.append(\n      bContain,\n      titleDescript,\n      tagSpan,\n      date,\n      delBtn,\n    );\n    return taskContainer;\n  }\n\n  function addTaskToDom(task) {\n    const parent = document.getElementById('tasks-container');\n    parent.appendChild(displayTask(task));\n  }\n\n  function refreshScreen(arr) {\n    removeAllTasks();\n\n    /* for (const item in arr) {\n      addTaskToDom(arr[item]);\n    } */\n\n    arr.forEach((elem) => {\n      addTaskToDom(elem);\n    });\n  }\n\n  function filterSearchItems(item) {\n    const currLib = returnLib();\n    const filtered = [];\n    if (item !== '') {\n      for (let i = 0; i < currLib.length; i += 1) {\n        // eslint-disable-next-line no-restricted-syntax, guard-for-in\n        for (const thing in currLib[i]) {\n          const currTask = currLib[i][thing];\n          if (typeof currTask !== 'boolean') {\n            if (currTask.includes(item)) {\n              filtered.push(currLib[i]);\n            }\n          }\n        }\n      }\n      refreshScreen(filtered);\n    } else {\n      refreshScreen(currLib);\n    }\n  }\n\n  function filterTodayItems() {\n    const filtered = library.filter((i) => i.dueDate === (0,_task__WEBPACK_IMPORTED_MODULE_0__.getTodaysDate)());\n    refreshScreen(filtered);\n  }\n\n  function filterUrgentItems() {\n    const filtered = library.filter((i) => i.urgent === true);\n    refreshScreen(filtered);\n  }\n\n  function filterPersonalItems() {\n    const filtered = library.filter((i) => i.tags.includes('personal'));\n    refreshScreen(filtered);\n  }\n\n  function filterWorkItems() {\n    const filtered = library.filter((i) => i.tags.includes('work'));\n    refreshScreen(filtered);\n  }\n\n  function createFilter(tagName, tagSrc) {\n    const editedTagName = tagName.slice(4);\n\n    const newDiv = document.createElement('li');\n    newDiv.classList.add('type-opt');\n    newDiv.id = `nav${editedTagName}`;\n\n    const iconSpan = document.createElement('span');\n\n    const iconPic = new Image(20, 20);\n    iconPic.src = tagSrc;\n    iconPic.classList.add('icon-white');\n\n    const titleSpan = document.createElement('span');\n    titleSpan.classList.add('sort-title');\n    titleSpan.innerHTML = editedTagName;\n\n    newDiv.addEventListener('click', () => {\n      const filtered = library.filter((i) => i.tags.includes(editedTagName.toLowerCase()));\n      refreshScreen(filtered);\n    });\n\n    const delBtn = document.createElement('button');\n    delBtn.classList.add('delete-task-tag');\n    delBtn.innerHTML = '-';\n    delBtn.addEventListener('click', (e) => {\n      refreshScreen(returnLib());\n      e.target.parentNode.remove();\n      e.stopPropagation();\n    });\n\n    iconSpan.append(iconPic);\n    newDiv.append(iconSpan, titleSpan, delBtn);\n    document.body.childNodes[0].childNodes[0].childNodes[2].appendChild(newDiv);\n  }\n\n  return {\n    addTask,\n    returnLib,\n    filterSearchItems,\n    filterTodayItems,\n    filterUrgentItems,\n    filterPersonalItems,\n    filterWorkItems,\n    createFilter,\n    refreshScreen,\n    addTaskToDom,\n  };\n})();\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({ component });\n\n\n//# sourceURL=webpack://todo-app/./src/component.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"component\": () => (/* binding */ component)\n/* harmony export */ });\n/* harmony import */ var _task__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./task */ \"./src/task.js\");\n/* harmony import */ var _assets_garbage0_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./assets/garbage0.svg */ \"./src/assets/garbage0.svg\");\n/* harmony import */ var _assets_cottageFILL_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./assets/cottageFILL.svg */ \"./src/assets/cottageFILL.svg\");\n/* harmony import */ var _assets_workFILL_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./assets/workFILL.svg */ \"./src/assets/workFILL.svg\");\n/* harmony import */ var _assets_luggageFILL_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./assets/luggageFILL.svg */ \"./src/assets/luggageFILL.svg\");\n/* harmony import */ var _assets_dineFILL_svg__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./assets/dineFILL.svg */ \"./src/assets/dineFILL.svg\");\n/* harmony import */ var _assets_cakeFILL_svg__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./assets/cakeFILL.svg */ \"./src/assets/cakeFILL.svg\");\n/* harmony import */ var _assets_weightsFILL_svg__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./assets/weightsFILL.svg */ \"./src/assets/weightsFILL.svg\");\n/* harmony import */ var _assets_meetingsFILL_svg__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./assets/meetingsFILL.svg */ \"./src/assets/meetingsFILL.svg\");\n/* harmony import */ var _assets_starFILL_svg__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./assets/starFILL.svg */ \"./src/assets/starFILL.svg\");\n/* harmony import */ var _assets_megaphoneFILL_svg__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./assets/megaphoneFILL.svg */ \"./src/assets/megaphoneFILL.svg\");\n/* harmony import */ var _assets_skateFILL_svg__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./assets/skateFILL.svg */ \"./src/assets/skateFILL.svg\");\n/* harmony import */ var _assets_beerFILL_svg__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./assets/beerFILL.svg */ \"./src/assets/beerFILL.svg\");\n// import { compareAsc, format } from 'date-fns';\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nconst component = (() => {\n  const library = [\n    {\n      completed: false,\n      createDate: '2022-06-18',\n      description: 'today, upcoming, urgent',\n      dueDate: '2022-06-18',\n      tags: 'personal work',\n      title: 'task 1',\n      urgent: true,\n    },\n    {\n      completed: false,\n      createDate: '2022-06-18',\n      description: 'today, upcoming',\n      dueDate: '2022-06-18',\n      tags: 'personal',\n      title: 'task 2',\n      urgent: false,\n    },\n    {\n      completed: false,\n      createDate: '2022-06-18',\n      description: 'upcoming, urgent',\n      dueDate: '2022-06-19',\n      tags: 'work',\n      title: 'task 3',\n      urgent: true,\n    },\n    {\n      completed: false,\n      createDate: '2022-06-18',\n      description: 'upcoming',\n      dueDate: '2022-06-19',\n      tags: 'work personal travel',\n      title: 'task 4',\n      urgent: false,\n    },\n  ];\n\n  function addTask(obj) {\n    library.push(obj);\n  }\n\n  function returnLib() {\n    return library;\n  }\n\n  function removeAllTasks() {\n    const container = document.getElementById('tasks-container').childNodes;\n    const containerItems = container.length - 1;\n\n    for (let i = containerItems; i >= 0; i -= 1) {\n      container[i].remove();\n    }\n  }\n\n  function deleteTask(title, descript) {\n    // find obj in librar, return ind\n    const ind = library.findIndex((elem) => elem.title === title && elem.description === descript);\n    // remove library.ind\n    library.splice(ind, 1);\n\n    console.log(library, ind);\n  }\n\n  function displayTask(obj) {\n    const taskContainer = document.createElement('div');\n    taskContainer.classList.add('task-container');\n\n    const titleDescript = document.createElement('div');\n    titleDescript.classList.add('task-center-container');\n\n    // title\n    const title = document.createElement('h1');\n    title.classList.add('task-title');\n    title.contentEditable = 'true';\n    title.innerHTML = obj.title;\n\n    // description\n    const descript = document.createElement('p');\n    descript.classList.add('task-descript');\n    descript.contentEditable = 'true';\n    descript.innerHTML = obj.description;\n\n    // completeted: bool\n    const complete = document.createElement('input');\n    complete.classList.add('task-progress');\n    complete.type = 'checkbox';\n\n    // dueDate: \"2022-06-14\"\n    const date = document.createElement('p');\n    date.classList.add('task-date');\n    date.contentEditable = 'true';\n    date.innerHTML = obj.dueDate.slice(5);\n\n    // urgent: true\n    // red outline around completed button\n    const bContain = document.createElement('label');\n    const bInput = document.createElement('div');\n\n    // urgent == true ? add special class\n    if (obj.urgent === true) {\n      bContain.classList.add('u-contain');\n      bInput.classList.add('u-input');\n    } else {\n      bContain.classList.add('b-contain');\n      bInput.classList.add('b-input');\n    }\n\n    // tags\n    const tagSpan = document.createElement('span');\n    tagSpan.classList.add('task-tag-span');\n\n    if (obj.tags.includes('personal')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _assets_cottageFILL_svg__WEBPACK_IMPORTED_MODULE_2__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('work')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _assets_workFILL_svg__WEBPACK_IMPORTED_MODULE_3__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('travel')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _assets_luggageFILL_svg__WEBPACK_IMPORTED_MODULE_4__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('dining')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _assets_dineFILL_svg__WEBPACK_IMPORTED_MODULE_5__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('birthdays')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _assets_cakeFILL_svg__WEBPACK_IMPORTED_MODULE_6__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('excercise')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _assets_weightsFILL_svg__WEBPACK_IMPORTED_MODULE_7__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('meetings')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _assets_meetingsFILL_svg__WEBPACK_IMPORTED_MODULE_8__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('favorites')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _assets_starFILL_svg__WEBPACK_IMPORTED_MODULE_9__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('campaigning')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _assets_megaphoneFILL_svg__WEBPACK_IMPORTED_MODULE_10__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('intramural')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _assets_skateFILL_svg__WEBPACK_IMPORTED_MODULE_11__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n    if (obj.tags.includes('drinks')) {\n      const anIcon = new Image(18, 18);\n      anIcon.src = _assets_beerFILL_svg__WEBPACK_IMPORTED_MODULE_12__;\n      anIcon.classList.add('task-tags');\n      tagSpan.appendChild(anIcon);\n    }\n\n    // edit button\n    // const editBtn = document.createElement('span');\n    // const editPic = new Image (20, 20);\n    // editPic.src = pencilPic;\n    // editPic.classList.add('icon-center');\n\n    // delete button\n    const delBtn = document.createElement('span');\n    delBtn.classList.add('del-span');\n    const delPic = new Image(20, 20);\n    delPic.src = _assets_garbage0_svg__WEBPACK_IMPORTED_MODULE_1__;\n    delPic.classList.add('icon-center');\n    delBtn.addEventListener('click', (e) => {\n      // visual removal (but can change to refreshScreen after item removed from lib)\n      e.target.parentNode.parentNode.remove();\n\n      // remove from library\n      const taskTitle = e.target.parentNode.parentNode.childNodes[1].childNodes[0].innerText;\n      const taskDescript = e.target.parentNode.parentNode.childNodes[1].childNodes[1].innerText;\n      deleteTask(taskTitle, taskDescript);\n    });\n\n    // editBtn.appendChild(editPic);\n    delBtn.appendChild(delPic);\n    bContain.append(complete, bInput);\n    titleDescript.append(title, descript);\n    taskContainer.append(\n      bContain,\n      titleDescript,\n      tagSpan,\n      date,\n      delBtn,\n    );\n    return taskContainer;\n  }\n\n  function addTaskToDom(task) {\n    const parent = document.getElementById('tasks-container');\n    parent.appendChild(displayTask(task));\n  }\n\n  function refreshScreen(arr) {\n    removeAllTasks();\n\n    arr.forEach((elem) => {\n      addTaskToDom(elem);\n    });\n  }\n\n  function filterSearchItems(item) {\n    const currLib = returnLib();\n    const filtered = [];\n    if (item !== '') {\n      for (let i = 0; i < currLib.length; i += 1) {\n        // eslint-disable-next-line no-restricted-syntax, guard-for-in\n        for (const thing in currLib[i]) {\n          const currTask = currLib[i][thing];\n          if (typeof currTask !== 'boolean') {\n            if (currTask.includes(item)) {\n              filtered.push(currLib[i]);\n            }\n          }\n        }\n      }\n      refreshScreen(filtered);\n    } else {\n      refreshScreen(currLib);\n    }\n  }\n\n  function filterTodayItems() {\n    const filtered = library.filter((i) => i.dueDate === (0,_task__WEBPACK_IMPORTED_MODULE_0__.getTodaysDate)());\n    refreshScreen(filtered);\n  }\n\n  function filterUrgentItems() {\n    const filtered = library.filter((i) => i.urgent === true);\n    refreshScreen(filtered);\n  }\n\n  function filterPersonalItems() {\n    const filtered = library.filter((i) => i.tags.includes('personal'));\n    refreshScreen(filtered);\n  }\n\n  function filterWorkItems() {\n    const filtered = library.filter((i) => i.tags.includes('work'));\n    refreshScreen(filtered);\n  }\n\n  function createFilter(tagName, tagSrc) {\n    const editedTagName = tagName.slice(4);\n\n    const newDiv = document.createElement('li');\n    newDiv.classList.add('type-opt');\n    newDiv.id = `nav${editedTagName}`;\n\n    const iconSpan = document.createElement('span');\n\n    const iconPic = new Image(20, 20);\n    iconPic.src = tagSrc;\n    iconPic.classList.add('icon-white');\n\n    const titleSpan = document.createElement('span');\n    titleSpan.classList.add('sort-title');\n    titleSpan.innerHTML = editedTagName;\n\n    newDiv.addEventListener('click', () => {\n      const filtered = library.filter((i) => i.tags.includes(editedTagName.toLowerCase()));\n      refreshScreen(filtered);\n    });\n\n    const delBtn = document.createElement('button');\n    delBtn.classList.add('delete-task-tag');\n    delBtn.innerHTML = '-';\n    delBtn.addEventListener('click', (e) => {\n      refreshScreen(returnLib());\n      e.target.parentNode.remove();\n      e.stopPropagation();\n    });\n\n    iconSpan.append(iconPic);\n    newDiv.append(iconSpan, titleSpan, delBtn);\n    document.body.childNodes[0].childNodes[0].childNodes[2].appendChild(newDiv);\n  }\n\n  return {\n    addTask,\n    returnLib,\n    filterSearchItems,\n    filterTodayItems,\n    filterUrgentItems,\n    filterPersonalItems,\n    filterWorkItems,\n    createFilter,\n    refreshScreen,\n    addTaskToDom,\n  };\n})();\n\n\n\n\n//# sourceURL=webpack://todo-app/./src/component.js?");
 
 /***/ }),
 
@@ -359,123 +359,123 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
-/***/ "./src/beerFILL.svg":
-/*!**************************!*\
-  !*** ./src/beerFILL.svg ***!
-  \**************************/
+/***/ "./src/assets/beerFILL.svg":
+/*!*********************************!*\
+  !*** ./src/assets/beerFILL.svg ***!
+  \*********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"9af5656253d0fb17f128.svg\";\n\n//# sourceURL=webpack://todo-app/./src/beerFILL.svg?");
+eval("module.exports = __webpack_require__.p + \"9af5656253d0fb17f128.svg\";\n\n//# sourceURL=webpack://todo-app/./src/assets/beerFILL.svg?");
 
 /***/ }),
 
-/***/ "./src/cakeFILL.svg":
-/*!**************************!*\
-  !*** ./src/cakeFILL.svg ***!
-  \**************************/
+/***/ "./src/assets/cakeFILL.svg":
+/*!*********************************!*\
+  !*** ./src/assets/cakeFILL.svg ***!
+  \*********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"d22a29c0b3e82e835bb9.svg\";\n\n//# sourceURL=webpack://todo-app/./src/cakeFILL.svg?");
+eval("module.exports = __webpack_require__.p + \"d22a29c0b3e82e835bb9.svg\";\n\n//# sourceURL=webpack://todo-app/./src/assets/cakeFILL.svg?");
 
 /***/ }),
 
-/***/ "./src/cottageFILL.svg":
-/*!*****************************!*\
-  !*** ./src/cottageFILL.svg ***!
-  \*****************************/
+/***/ "./src/assets/cottageFILL.svg":
+/*!************************************!*\
+  !*** ./src/assets/cottageFILL.svg ***!
+  \************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"3d7c5132c96e2f454135.svg\";\n\n//# sourceURL=webpack://todo-app/./src/cottageFILL.svg?");
+eval("module.exports = __webpack_require__.p + \"3d7c5132c96e2f454135.svg\";\n\n//# sourceURL=webpack://todo-app/./src/assets/cottageFILL.svg?");
 
 /***/ }),
 
-/***/ "./src/dineFILL.svg":
-/*!**************************!*\
-  !*** ./src/dineFILL.svg ***!
-  \**************************/
+/***/ "./src/assets/dineFILL.svg":
+/*!*********************************!*\
+  !*** ./src/assets/dineFILL.svg ***!
+  \*********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"bc0142087b77ef02e195.svg\";\n\n//# sourceURL=webpack://todo-app/./src/dineFILL.svg?");
+eval("module.exports = __webpack_require__.p + \"bc0142087b77ef02e195.svg\";\n\n//# sourceURL=webpack://todo-app/./src/assets/dineFILL.svg?");
 
 /***/ }),
 
-/***/ "./src/garbage0.svg":
-/*!**************************!*\
-  !*** ./src/garbage0.svg ***!
-  \**************************/
+/***/ "./src/assets/garbage0.svg":
+/*!*********************************!*\
+  !*** ./src/assets/garbage0.svg ***!
+  \*********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"9791eda45730d66280b3.svg\";\n\n//# sourceURL=webpack://todo-app/./src/garbage0.svg?");
+eval("module.exports = __webpack_require__.p + \"9791eda45730d66280b3.svg\";\n\n//# sourceURL=webpack://todo-app/./src/assets/garbage0.svg?");
 
 /***/ }),
 
-/***/ "./src/luggageFILL.svg":
-/*!*****************************!*\
-  !*** ./src/luggageFILL.svg ***!
-  \*****************************/
+/***/ "./src/assets/luggageFILL.svg":
+/*!************************************!*\
+  !*** ./src/assets/luggageFILL.svg ***!
+  \************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"6c290ee8d97be7dc786a.svg\";\n\n//# sourceURL=webpack://todo-app/./src/luggageFILL.svg?");
+eval("module.exports = __webpack_require__.p + \"6c290ee8d97be7dc786a.svg\";\n\n//# sourceURL=webpack://todo-app/./src/assets/luggageFILL.svg?");
 
 /***/ }),
 
-/***/ "./src/meetingsFILL.svg":
-/*!******************************!*\
-  !*** ./src/meetingsFILL.svg ***!
-  \******************************/
+/***/ "./src/assets/meetingsFILL.svg":
+/*!*************************************!*\
+  !*** ./src/assets/meetingsFILL.svg ***!
+  \*************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"d19a68aa8d460db94ec8.svg\";\n\n//# sourceURL=webpack://todo-app/./src/meetingsFILL.svg?");
+eval("module.exports = __webpack_require__.p + \"d19a68aa8d460db94ec8.svg\";\n\n//# sourceURL=webpack://todo-app/./src/assets/meetingsFILL.svg?");
 
 /***/ }),
 
-/***/ "./src/megaphoneFILL.svg":
-/*!*******************************!*\
-  !*** ./src/megaphoneFILL.svg ***!
-  \*******************************/
+/***/ "./src/assets/megaphoneFILL.svg":
+/*!**************************************!*\
+  !*** ./src/assets/megaphoneFILL.svg ***!
+  \**************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"84d2527e05621d84bba3.svg\";\n\n//# sourceURL=webpack://todo-app/./src/megaphoneFILL.svg?");
+eval("module.exports = __webpack_require__.p + \"84d2527e05621d84bba3.svg\";\n\n//# sourceURL=webpack://todo-app/./src/assets/megaphoneFILL.svg?");
 
 /***/ }),
 
-/***/ "./src/skateFILL.svg":
-/*!***************************!*\
-  !*** ./src/skateFILL.svg ***!
-  \***************************/
+/***/ "./src/assets/skateFILL.svg":
+/*!**********************************!*\
+  !*** ./src/assets/skateFILL.svg ***!
+  \**********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"ec5e59f359c89a92cd9a.svg\";\n\n//# sourceURL=webpack://todo-app/./src/skateFILL.svg?");
+eval("module.exports = __webpack_require__.p + \"ec5e59f359c89a92cd9a.svg\";\n\n//# sourceURL=webpack://todo-app/./src/assets/skateFILL.svg?");
 
 /***/ }),
 
-/***/ "./src/starFILL.svg":
-/*!**************************!*\
-  !*** ./src/starFILL.svg ***!
-  \**************************/
+/***/ "./src/assets/starFILL.svg":
+/*!*********************************!*\
+  !*** ./src/assets/starFILL.svg ***!
+  \*********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"844fdbea05b605ceebb3.svg\";\n\n//# sourceURL=webpack://todo-app/./src/starFILL.svg?");
+eval("module.exports = __webpack_require__.p + \"844fdbea05b605ceebb3.svg\";\n\n//# sourceURL=webpack://todo-app/./src/assets/starFILL.svg?");
 
 /***/ }),
 
-/***/ "./src/weightsFILL.svg":
-/*!*****************************!*\
-  !*** ./src/weightsFILL.svg ***!
-  \*****************************/
+/***/ "./src/assets/weightsFILL.svg":
+/*!************************************!*\
+  !*** ./src/assets/weightsFILL.svg ***!
+  \************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"f9bccb86dc9db66575b6.svg\";\n\n//# sourceURL=webpack://todo-app/./src/weightsFILL.svg?");
+eval("module.exports = __webpack_require__.p + \"f9bccb86dc9db66575b6.svg\";\n\n//# sourceURL=webpack://todo-app/./src/assets/weightsFILL.svg?");
 
 /***/ }),
 
-/***/ "./src/workFILL.svg":
-/*!**************************!*\
-  !*** ./src/workFILL.svg ***!
-  \**************************/
+/***/ "./src/assets/workFILL.svg":
+/*!*********************************!*\
+  !*** ./src/assets/workFILL.svg ***!
+  \*********************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("module.exports = __webpack_require__.p + \"af925ce02e7415accb96.svg\";\n\n//# sourceURL=webpack://todo-app/./src/workFILL.svg?");
+eval("module.exports = __webpack_require__.p + \"af925ce02e7415accb96.svg\";\n\n//# sourceURL=webpack://todo-app/./src/assets/workFILL.svg?");
 
 /***/ })
 

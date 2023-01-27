@@ -215,17 +215,11 @@ function createbar() {
 
   const taskBtn = document.createElement('button');
   taskBtn.classList.add('submit-button');
+  taskBtn.id = 'taskSubmit-btn';
   taskBtn.type = 'button';
   taskBtn.innerHTML = 'create task';
-  taskBtn.addEventListener('click', (e) => {
-    const task = newTask(getInputValues());
-    component.addTask(task);
-    component.addTaskToDom(task);
-    component.returnLib();
-  });
 
   // appending
-
   const taskBtmRow = document.createElement('div');
   taskBtmRow.classList.add('form-lastrow');
 
@@ -299,10 +293,6 @@ function createbar() {
 
   div.append(createTask);
   return div;
-}
-
-function addIconToTask(obj) {
-
 }
 
 export { createbar };

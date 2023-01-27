@@ -19,6 +19,28 @@ export default function navbar() {
   const div = document.createElement('div');
   div.classList.add('side-bar-container');
 
+  const header = document.createElement('div');
+  header.classList.add('sidebar-header');
+
+  const userContainer = document.createElement('div');
+  userContainer.classList.add('userId-container');
+
+  const userName = document.createElement('p');
+  userName.id = ('userName');
+  userName.innerHTML = 'Hello Guest!';
+
+  const userPic = document.createElement('div');
+  userPic.id = ('userPic');
+
+  const signInBtn = document.createElement('button');
+  signInBtn.id = ('sign-in');
+  signInBtn.innerText = 'Sign In';
+
+  const signOutBtn = document.createElement('button');
+  signOutBtn.id = ('sign-out');
+  signOutBtn.innerText = 'Sign Out';
+  signOutBtn.setAttribute('hidden', 'true');
+
   const searchLabel = document.createElement('label');
   searchLabel.classList.add('search-label');
 
@@ -273,8 +295,10 @@ export default function navbar() {
   workIcon.appendChild(wIcon);
   work.append(workIcon, workHead);
 
+  userContainer.append(userName, userPic);
+  header.append(userContainer, signInBtn, signOutBtn);
   sortSect.append(today, upcoming, urgent);
   typeSect.append(personal, work);
-  div.append(searchLabel, sortSect, typeSect, tagsDropdown);
+  div.append(header, searchLabel, sortSect, typeSect, tagsDropdown);
   return div;
 }

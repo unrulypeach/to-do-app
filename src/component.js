@@ -1,4 +1,3 @@
-// import { compareAsc, format } from 'date-fns';
 import { getTodaysDate } from './task';
 import garbagePic from './assets/garbage0.svg';
 import personalIconPic from './assets/cottageFILL.svg';
@@ -12,16 +11,17 @@ import starPic from './assets/starFILL.svg';
 import megaphonePic from './assets/megaphoneFILL.svg';
 import skatePic from './assets/skateFILL.svg';
 import beerPic from './assets/beerFILL.svg';
+import { removeTaskFromDb, toggleTaskInDb, isUserSignedIn } from '.';
 
 const component = (() => {
   const library = [
     {
-      completed: false,
+      completed: true,
       createDate: '2022-06-18',
       description: 'today, upcoming, urgent',
       dueDate: '2022-06-18',
       tags: 'personal work',
-      title: 'task 1',
+      title: 'DEMO task 1',
       urgent: true,
     },
     {
@@ -30,7 +30,7 @@ const component = (() => {
       description: 'today, upcoming',
       dueDate: '2022-06-18',
       tags: 'personal',
-      title: 'task 2',
+      title: 'DEMO task 2',
       urgent: false,
     },
     {
@@ -39,7 +39,7 @@ const component = (() => {
       description: 'upcoming, urgent',
       dueDate: '2022-06-19',
       tags: 'work',
-      title: 'task 3',
+      title: 'DEMO task 3',
       urgent: true,
     },
     {
@@ -48,7 +48,7 @@ const component = (() => {
       description: 'upcoming',
       dueDate: '2022-06-19',
       tags: 'work personal travel',
-      title: 'task 4',
+      title: 'DEMO task 4',
       urgent: false,
     },
   ];
@@ -61,6 +61,7 @@ const component = (() => {
     return library;
   }
 
+  // remove tasks on DOM
   function removeAllTasks() {
     const container = document.getElementById('tasks-container').childNodes;
     const containerItems = container.length - 1;
@@ -75,13 +76,17 @@ const component = (() => {
     const ind = library.findIndex((elem) => elem.title === title && elem.description === descript);
     // remove library.ind
     library.splice(ind, 1);
-
-    console.log(library, ind);
   }
 
-  function displayTask(obj) {
+  // function deleteLibrary() {}
+
+  function displayTask(obj, uid) {
     const taskContainer = document.createElement('div');
     taskContainer.classList.add('task-container');
+    taskContainer.id = uid;
+    if (obj.completed === true) {
+      taskContainer.classList.add('task-complete');
+    }
 
     const titleDescript = document.createElement('div');
     titleDescript.classList.add('task-center-container');
@@ -102,6 +107,33 @@ const component = (() => {
     const complete = document.createElement('input');
     complete.classList.add('task-progress');
     complete.type = 'checkbox';
+    if (obj.completed === true) {
+      complete.checked = true;
+    }
+    complete.addEventListener('change', (e) => {
+      if (isUserSignedIn()) {
+        toggleTaskInDb(e.target.parentNode.parentNode.id, 'completed');
+        if (e.target.checked === true) {
+          e.target.parentElement.parentElement.classList.add('task-complete');
+        } else {
+          e.target.parentElement.parentElement.classList.remove('task-complete');
+        }
+      } else {
+        const ind = library.findIndex((elem) => elem.title === obj.title
+        && elem.description === obj.description
+        && elem.createDate === obj.createDate
+        && elem.dueDate === obj.dueDate);
+        if (e.target.checked === true) {
+          // set complete = true in library
+          library[ind].completed = true;
+          // set a classname in parent div
+          e.target.parentElement.parentElement.classList.add('task-complete');
+        } else {
+          library[ind].completed = false;
+          e.target.parentElement.parentElement.classList.remove('task-complete');
+        }
+      }
+    });
 
     // dueDate: "2022-06-14"
     const date = document.createElement('p');
@@ -200,6 +232,14 @@ const component = (() => {
     // editPic.src = pencilPic;
     // editPic.classList.add('icon-center');
 
+    function getTaskTitleFromDeleteBtn(ev) {
+      return ev.target.parentNode.parentNode.childNodes[1].childNodes[0].innerText;
+    }
+
+    function getTaskDescriptFromDeleteBtn(ev) {
+      return ev.target.parentNode.parentNode.childNodes[1].childNodes[1].innerText;
+    }
+
     // delete button
     const delBtn = document.createElement('span');
     delBtn.classList.add('del-span');
@@ -210,10 +250,13 @@ const component = (() => {
       // visual removal (but can change to refreshScreen after item removed from lib)
       e.target.parentNode.parentNode.remove();
 
-      // remove from library
-      const taskTitle = e.target.parentNode.parentNode.childNodes[1].childNodes[0].innerText;
-      const taskDescript = e.target.parentNode.parentNode.childNodes[1].childNodes[1].innerText;
-      deleteTask(taskTitle, taskDescript);
+      // remove from db
+      if (isUserSignedIn()) {
+        removeTaskFromDb(e.target.parentNode.parentNode.id);
+      } else {
+        // remove from library
+        deleteTask(getTaskTitleFromDeleteBtn(e), getTaskDescriptFromDeleteBtn(e));
+      }
     });
 
     // editBtn.appendChild(editPic);
@@ -230,9 +273,11 @@ const component = (() => {
     return taskContainer;
   }
 
-  function addTaskToDom(task) {
+  function addTaskToDom(task, uid) {
     const parent = document.getElementById('tasks-container');
-    parent.appendChild(displayTask(task));
+    (uid === undefined)
+      ? parent.appendChild(displayTask(task))
+      : parent.appendChild(displayTask(task, uid));
   }
 
   function refreshScreen(arr) {
@@ -317,7 +362,7 @@ const component = (() => {
 
     iconSpan.append(iconPic);
     newDiv.append(iconSpan, titleSpan, delBtn);
-    document.body.childNodes[0].childNodes[0].childNodes[2].appendChild(newDiv);
+    document.body.childNodes[1].childNodes[0].childNodes[3].appendChild(newDiv);
   }
 
   return {
@@ -329,6 +374,7 @@ const component = (() => {
     filterPersonalItems,
     filterWorkItems,
     createFilter,
+    removeAllTasks,
     refreshScreen,
     addTaskToDom,
   };
