@@ -33,8 +33,8 @@ import { newTask, getInputValues } from './task';
 
 initPage();
 component.refreshScreen(component.returnLib());
-const auth = getAuth();
-connectAuthEmulator(auth, 'http://localhost:9099');
+// const auth = getAuth();
+// connectAuthEmulator(auth, 'http://localhost:9099');
 
 // Sign-in
 async function signIn() {
@@ -242,10 +242,10 @@ createNewTaskBtnElem.addEventListener('click', () => {
   }
 });
 
-// const app = initializeApp(getFirebaseConfig());
-// const db = getFirestore(app);
+const app = initializeApp(getFirebaseConfig());
+const db = getFirestore(app);
 initFirebaseAuth();
-const db = getFirestore();
-connectFirestoreEmulator(db, 'localhost', 8080);
+// const db = getFirestore();
+// connectFirestoreEmulator(db, 'localhost', 8080);
 
 export { removeTaskFromDb, toggleTaskInDb, isUserSignedIn };
