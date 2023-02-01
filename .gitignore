@@ -4,3 +4,4 @@ firestore.rules
 functions
 ui-debug.log
 firestore-debug.log
+.env
